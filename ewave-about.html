@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ewave — Building Africa's Stablecoin Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --forest:#6049CC;--forest-mid:#4F3BB0;--forest-light:#7A65D6;
+  --sage:#F0EDFC;--sage-mid:#DDD8F8;--sage-deep:#C4BAF0;
+  --mint:#9B87E8;--mint-light:#EDE8FB;
+  --white:#FFFFFF;--off-white:#F7F8F5;
+  --ink:#141414;--ink-soft:#4A4A4A;--ink-muted:#8A8A8A;--ink-faint:#C4C4C4;
+  --rule:rgba(0,0,0,0.08);
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',sans-serif;
+  --radius:14px;--radius-sm:8px;--radius-pill:100px;
+  --fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;--fw-extrabold:800;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:60px}
+.nav-logo{font-family:var(--sans);font-size:18px;font-weight:var(--fw-bold);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:7px;letter-spacing:-0.02em}
+.nav-dot{width:8px;height:8px;background:var(--mint);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{font-size:14px;font-weight:var(--fw-medium);color:var(--ink-soft);text-decoration:none;letter-spacing:-0.01em;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--forest);font-weight:var(--fw-semibold)}
+.btn-cta{background:var(--forest);color:white;padding:9px 20px;border-radius:var(--radius-pill);font-size:13.5px;font-weight:var(--fw-semibold);text-decoration:none;letter-spacing:-0.01em;transition:background .2s}
+.btn-cta:hover{background:var(--forest-mid)}
+
+/* ── HERO ── */
+.about-hero{background:var(--off-white);padding:80px 5% 72px;text-align:center;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(to right,rgba(96,73,204,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(96,73,204,0.05) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 40%,transparent 100%);pointer-events:none}
+.about-hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--mint-light);color:var(--forest);font-size:12px;font-weight:var(--fw-bold);padding:6px 16px;border-radius:var(--radius-pill);letter-spacing:.04em;text-transform:uppercase;margin-bottom:24px;position:relative}
+.about-hero-h{font-family:var(--sans);font-size:clamp(40px,6vw,68px);font-weight:var(--fw-extrabold);line-height:1.05;letter-spacing:-0.04em;color:var(--ink);margin-bottom:20px;position:relative}
+.about-hero-h em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--forest)}
+.about-hero-sub{font-size:16.5px;font-weight:var(--fw-regular);color:var(--ink-soft);max-width:52ch;margin:0 auto 36px;line-height:1.72;letter-spacing:-0.01em;position:relative}
+
+/* ── STATS ROW ── */
+.stats-row{display:flex;justify-content:center;gap:0;background:white;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-item{flex:1;max-width:220px;padding:32px 20px;text-align:center;border-right:1px solid var(--rule)}
+.stat-item:last-child{border-right:none}
+@media(max-width:600px){.stats-row{flex-wrap:wrap}.stat-item{min-width:50%;border-bottom:1px solid var(--rule)}}
+.stat-num{font-family:var(--sans);font-size:36px;font-weight:var(--fw-extrabold);color:var(--forest);letter-spacing:-0.04em;line-height:1}
+.stat-label{font-size:12.5px;font-weight:var(--fw-medium);color:var(--ink-muted);margin-top:6px;letter-spacing:.01em}
+
+/* ── OUR STORY ── */
+.story-section{padding:88px 5%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:860px){.story-section{grid-template-columns:1fr;gap:48px}}
+.story-left{}
+.story-eyebrow{display:inline-block;font-size:11.5px;font-weight:var(--fw-bold);color:var(--forest);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;background:var(--mint-light);padding:5px 14px;border-radius:var(--radius-pill)}
+.story-h{font-family:var(--sans);font-size:clamp(28px,3vw,44px);font-weight:var(--fw-extrabold);line-height:1.1;letter-spacing:-0.035em;color:var(--ink);margin-bottom:28px}
+.story-h em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--forest)}
+.story-p{font-size:15px;color:var(--ink-soft);line-height:1.8;margin-bottom:18px;letter-spacing:-0.005em}
+.story-p:last-child{margin-bottom:0}
+.story-p strong{color:var(--ink);font-weight:var(--fw-semibold)}
+
+.story-right{position:relative}
+.story-img-wrap{border-radius:24px;overflow:hidden;position:relative}
+.story-img-bg{width:100%;height:440px;background:linear-gradient(135deg,#1a1040 0%,#2D1F6E 35%,#6049CC 70%,#9B87E8 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.story-img-bg::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+
+/* Team illustration */
+.team-illustration{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px}
+.team-row{display:flex;gap:12px;align-items:flex-end}
+.team-person{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tp-avatar{border-radius:50%;border:3px solid rgba(255,255,255,0.3);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.tp-avatar.large{width:80px;height:80px;background:linear-gradient(180deg,#c4bae0 0%,#9B87E8 100%)}
+.tp-avatar.medium{width:64px;height:64px;background:linear-gradient(180deg,#b8aaea 0%,#7A65D6 100%)}
+.tp-avatar.small{width:52px;height:52px;background:linear-gradient(180deg,#ddd8f8 0%,#C4BAF0 100%)}
+.tp-label{font-size:10px;font-weight:var(--fw-bold);color:rgba(255,255,255,0.7);letter-spacing:.04em;text-align:center}
+
+.story-float-card{position:absolute;bottom:-20px;right:-20px;background:white;border-radius:16px;padding:16px 20px;box-shadow:0 12px 40px rgba(96,73,204,0.18);border:1px solid var(--rule);min-width:180px}
+@media(max-width:860px){.story-float-card{position:static;margin-top:20px;width:fit-content}}
+.sfc-label{font-size:10.5px;font-weight:var(--fw-bold);color:var(--ink-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+.sfc-val{font-size:28px;font-weight:var(--fw-extrabold);color:var(--forest);letter-spacing:-0.04em;line-height:1}
+.sfc-sub{font-size:12px;font-weight:var(--fw-medium);color:var(--ink-soft);margin-top:4px}
+.sfc-badge{display:inline-flex;align-items:center;gap:4px;background:var(--mint-light);color:var(--forest);font-size:10px;font-weight:var(--fw-bold);padding:3px 10px;border-radius:var(--radius-pill);margin-top:8px}
+.sfc-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--forest)}
+
+/* ── VALUES ── */
+.values-section{background:var(--off-white);padding:88px 5%;border-top:1px solid var(--rule)}
+.values-header{text-align:center;margin-bottom:52px}
+.section-eyebrow{display:inline-block;background:var(--mint-light);color:var(--forest);font-size:11.5px;font-weight:var(--fw-bold);padding:5px 14px;border-radius:var(--radius-pill);letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.section-h{font-family:var(--sans);font-size:clamp(26px,3vw,40px);font-weight:var(--fw-extrabold);color:var(--ink);letter-spacing:-0.035em;line-height:1.1;margin-bottom:12px}
+.section-sub{font-size:15.5px;color:var(--ink-soft);max-width:46ch;margin:0 auto;line-height:1.7}
+
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+@media(max-width:600px){.values-grid{grid-template-columns:1fr}}
+.value-card{background:white;border:1px solid var(--rule);border-radius:20px;padding:32px 28px;transition:transform .25s,box-shadow .25s}
+.value-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(96,73,204,0.09)}
+.value-card.featured{background:var(--forest);border-color:var(--forest)}
+.value-icon{width:48px;height:48px;border-radius:14px;background:var(--mint-light);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.value-card.featured .value-icon{background:rgba(255,255,255,0.15)}
+.value-icon svg{width:24px;height:24px}
+.value-title{font-size:17px;font-weight:var(--fw-bold);color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em}
+.value-card.featured .value-title{color:white}
+.value-desc{font-size:14px;color:var(--ink-soft);line-height:1.7}
+.value-card.featured .value-desc{color:rgba(255,255,255,0.65)}
+
+/* ── JOURNEY / TIMELINE ── */
+.journey-section{padding:88px 5%;background:white;border-top:1px solid var(--rule)}
+.journey-header{text-align:center;margin-bottom:64px}
+.timeline{max-width:760px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:50px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--sage-mid) 0%,var(--forest) 50%,var(--sage-mid) 100%)}
+@media(max-width:600px){.timeline::before{left:28px}}
+
+.tl-item{display:flex;gap:32px;align-items:flex-start;margin-bottom:12px;position:relative}
+.tl-item:last-child{margin-bottom:0}
+@media(max-width:600px){.tl-item{gap:20px}}
+
+.tl-badge{flex-shrink:0;width:100px;display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2}
+@media(max-width:600px){.tl-badge{width:56px}}
+.tl-year{width:56px;height:56px;border-radius:50%;background:var(--forest);color:white;font-size:13px;font-weight:var(--fw-extrabold);display:flex;align-items:center;justify-content:center;letter-spacing:-0.02em;border:3px solid white;box-shadow:0 0 0 2px var(--sage-mid);flex-shrink:0}
+@media(max-width:600px){.tl-year{width:44px;height:44px;font-size:11px}}
+
+.tl-card{flex:1;background:var(--off-white);border:1px solid var(--rule);border-radius:var(--radius);padding:24px 28px;margin-bottom:20px;transition:border-color .2s,box-shadow .2s}
+.tl-card:hover{border-color:var(--sage-deep);box-shadow:0 4px 20px rgba(96,73,204,0.07)}
+.tl-card.active{background:white;border-color:var(--forest);box-shadow:0 4px 24px rgba(96,73,204,0.12)}
+.tl-card.active .tl-year-label{color:var(--forest)}
+.tl-connector{width:32px;height:2px;background:var(--sage-mid);margin-top:27px;flex-shrink:0}
+@media(max-width:600px){.tl-connector{width:16px;margin-top:21px}}
+.tl-tag{display:inline-block;font-size:10.5px;font-weight:var(--fw-bold);color:var(--forest);background:var(--mint-light);padding:3px 10px;border-radius:var(--radius-pill);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.tl-card.active .tl-tag{background:var(--forest);color:white}
+.tl-title{font-size:17px;font-weight:var(--fw-bold);color:var(--ink);letter-spacing:-0.02em;margin-bottom:8px}
+.tl-desc{font-size:14px;color:var(--ink-soft);line-height:1.68}
+
+/* ── NEWSLETTER ── */
+.newsletter{background:var(--ink);padding:80px 5%;text-align:center;position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(96,73,204,0.25) 0%,transparent 70%);top:-250px;left:50%;transform:translateX(-50%);pointer-events:none}
+.newsletter-h{font-family:var(--sans);font-size:clamp(28px,4vw,48px);font-weight:var(--fw-extrabold);color:white;letter-spacing:-0.04em;line-height:1.1;max-width:16ch;margin:0 auto 16px;position:relative}
+.newsletter-h em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--mint)}
+.newsletter-sub{font-size:15.5px;color:rgba(255,255,255,0.5);max-width:48ch;margin:0 auto 36px;line-height:1.7;position:relative}
+.newsletter-form{display:flex;gap:10px;max-width:480px;margin:0 auto 16px;position:relative}
+.newsletter-input{flex:1;padding:14px 22px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);font-family:var(--sans);font-size:14px;font-weight:var(--fw-medium);color:white;outline:none;letter-spacing:-0.01em;transition:border-color .2s}
+.newsletter-input::placeholder{color:rgba(255,255,255,0.35)}
+.newsletter-input:focus{border-color:var(--mint)}
+.newsletter-btn{background:var(--forest);color:white;padding:14px 24px;border-radius:var(--radius-pill);font-family:var(--sans);font-size:13.5px;font-weight:var(--fw-bold);border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s;letter-spacing:-0.01em}
+.newsletter-btn:hover{opacity:.88}
+.newsletter-note{font-size:12px;color:rgba(255,255,255,0.3);position:relative}
+
+/* ── FOOTER ── */
+footer{background:white;border-top:1px solid var(--rule);padding:36px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.foot-logo{font-family:var(--sans);font-size:17px;font-weight:var(--fw-bold);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;letter-spacing:-0.02em}
+.foot-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.foot-links a{font-size:13px;font-weight:var(--fw-medium);color:var(--ink-muted);text-decoration:none;letter-spacing:-0.01em;transition:color .2s}
+.foot-links a:hover{color:var(--ink)}
+.foot-copy{font-size:12px;font-weight:var(--fw-medium);color:var(--ink-faint)}
+
+/* ── ANIMATIONS ── */
+.r{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.r.v{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
+  <a href="ewave-landing (2).html" class="nav-logo"><div class="nav-dot"></div>Ewave</a>
+  <div class="nav-links">
+    <a href="ewave-whatsapp.html">WhatsApp Bot</a>
+    <a href="ewave-blog.html">Blogs</a>
+    <a href="ewave-about.html" class="active">About Us</a>
+    <a href="#" class="btn-cta">Get Started →</a>
+  </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-eyebrow r">About Ewave</div>
+  <h1 class="about-hero-h r d1">Building Africa's<br><em>Stablecoin Infrastructure</em></h1>
+  <p class="about-hero-sub r d2">We're on a mission to empower every African with seamless access to digital dollars, enabling financial freedom and economic opportunity across the continent.</p>
+</section>
+
+<!-- STATS -->
+<div class="stats-row r">
+  <div class="stat-item">
+    <div class="stat-num">54+</div>
+    <div class="stat-label">Countries Supported</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10k+</div>
+    <div class="stat-label">Active Users</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">&lt;2s</div>
+    <div class="stat-label">Avg. Settlement</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Wire Transfer Fees</div>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<div style="border-bottom:1px solid var(--rule)">
+<div class="story-section">
+  <div class="story-left">
+    <span class="story-eyebrow r">Our Story</span>
+    <h2 class="story-h r d1">Money moves the world — but for millions of Africans, it still moves <em>too slowly.</em></h2>
+    <p class="story-p r d2">While the rest of the world builds in digital dollars, many are left behind by systems that can't keep up. <strong>Ewave was created to close that gap</strong> — to connect Africa to the stability, speed, and freedom of the digital economy.</p>
+    <p class="story-p r d2">Our founders knew this challenge well. From losing savings to inflation to waiting weeks for cross-border payments, they lived the problem before building the solution.</p>
+    <p class="story-p r d3">With Ewave, we're giving Africans the tools to send, save, and spend stablecoins effortlessly — empowering everyone to grow, not just survive.</p>
+    <p class="story-p r d3">Ewave isn't just another fintech. It's a <strong>financial revolution built for the next generation of Africans</strong> — one stablecoin transaction at a time. 🌍</p>
+  </div>
+
+  <div class="story-right r d2">
+    <div class="story-img-wrap">
+      <div class="story-img-bg">
+        <div class="team-illustration">
+          <!-- Abstract team scene -->
+          <div style="display:flex;gap:20px;align-items:flex-end;position:relative;z-index:2">
+            <div class="team-person">
+              <div class="tp-avatar large" style="width:88px;height:88px;">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><ellipse cx="28" cy="20" rx="12" ry="13" fill="rgba(255,255,255,0.5)"/><ellipse cx="28" cy="50" rx="20" ry="14" fill="rgba(255,255,255,0.35)"/></svg>
+              </div>
+              <div class="tp-label">Founder</div>
+            </div>
+            <div class="team-person">
+              <div class="tp-avatar medium" style="width:72px;height:72px;">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><ellipse cx="23" cy="16" rx="10" ry="11" fill="rgba(255,255,255,0.5)"/><ellipse cx="23" cy="42" rx="17" ry="12" fill="rgba(255,255,255,0.35)"/></svg>
+              </div>
+              <div class="tp-label">Co-Founder</div>
+            </div>
+            <div class="team-person">
+              <div class="tp-avatar medium" style="width:72px;height:72px;">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><ellipse cx="23" cy="16" rx="10" ry="11" fill="rgba(255,255,255,0.5)"/><ellipse cx="23" cy="42" rx="17" ry="12" fill="rgba(255,255,255,0.35)"/></svg>
+              </div>
+              <div class="tp-label">CTO</div>
+            </div>
+          </div>
+          <!-- Laptop/work element -->
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 20px;width:260px;margin-top:8px">
+            <div style="display:flex;gap:6px;margin-bottom:10px"><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div></div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.25);width:80%"></div>
+              <div style="height:5px;border-radius:3px;background:rgba(155,135,232,0.5);width:60%"></div>
+              <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.15);width:90%"></div>
+              <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.2);width:50%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Floating card -->
+    <div class="story-float-card">
+      <div class="sfc-label">Users across Africa</div>
+      <div class="sfc-val">10,000+</div>
+      <div class="sfc-sub">& growing every day</div>
+      <div class="sfc-badge"><span class="sfc-badge-dot"></span> Active now</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-header r">
+    <div class="section-eyebrow">What We Stand For</div>
+    <h2 class="section-h">Built on principles that <em style="font-family:var(--serif);font-style:italic;font-weight:300;color:var(--forest);">matter</em></h2>
+    <p class="section-sub">Every product decision, every partnership, and every line of code is guided by these core values.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card featured r">
+      <div class="value-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 9-7 10.5C8.5 21 5 17 5 12V6l7-4z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="value-title">Mission-Driven</div>
+      <div class="value-desc">Empowering financial inclusion across Africa through accessible Web3 technology.</div>
+    </div>
+    <div class="value-card r d1">
+      <div class="value-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="var(--forest)" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="value-title">User-Centric</div>
+      <div class="value-desc">Building products that solve real problems for real people in emerging markets.</div>
+    </div>
+    <div class="value-card r d2">
+      <div class="value-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="var(--forest)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="value-title">Innovation First</div>
+      <div class="value-desc">Pioneering the future of digital payments with cutting-edge blockchain solutions.</div>
+    </div>
+    <div class="value-card r d3">
+      <div class="value-icon">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="var(--forest)" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round"/><path d="M8 3.5C6 5 4.5 7 4 9.5" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="value-title">Community-Focused</div>
+      <div class="value-desc">Growing together with our users, partners, and the broader Web3 ecosystem.</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY / TIMELINE -->
+<section class="journey-section">
+  <div class="journey-header r">
+    <div class="section-eyebrow">Our Journey</div>
+    <h2 class="section-h">Key milestones in building <em style="font-family:var(--serif);font-style:italic;font-weight:300;color:var(--forest);">Ewave</em></h2>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item r">
+      <div class="tl-badge">
+        <div class="tl-year">2023</div>
+      </div>
+      <div class="tl-connector"></div>
+      <div class="tl-card">
+        <div class="tl-tag">Founding</div>
+        <div class="tl-title">Ewave First Test</div>
+        <div class="tl-desc">Started with a vision to simplify cross-border payments across Africa. The first prototype was born out of personal frustration with slow, expensive remittances.</div>
+      </div>
+    </div>
+
+    <div class="tl-item r d1">
+      <div class="tl-badge">
+        <div class="tl-year">2024</div>
+      </div>
+      <div class="tl-connector"></div>
+      <div class="tl-card">
+        <div class="tl-tag">Pivot</div>
+        <div class="tl-title">Ewave Pivot</div>
+        <div class="tl-desc">We decided to pivot to the use of stablecoins to simplify payment — enabling dollar-denominated transactions without the volatility of traditional crypto.</div>
+      </div>
+    </div>
+
+    <div class="tl-item r d2">
+      <div class="tl-badge">
+        <div class="tl-year">2024</div>
+      </div>
+      <div class="tl-connector"></div>
+      <div class="tl-card active">
+        <div class="tl-tag">Product</div>
+        <div class="tl-title">Ewave AI Agent</div>
+        <div class="tl-desc">We built a WhatsApp AI Agent that allows you to transact directly on WhatsApp — no app download, no friction, just a chat message and it's done.</div>
+      </div>
+    </div>
+
+    <div class="tl-item r d3">
+      <div class="tl-badge">
+        <div class="tl-year">2025</div>
+      </div>
+      <div class="tl-connector"></div>
+      <div class="tl-card">
+        <div class="tl-tag">Launch</div>
+        <div class="tl-title">Public Launch</div>
+        <div class="tl-desc">Opened to African countries including Nigeria, Kenya, Ghana and more — bringing stablecoin payments to millions of people across the continent.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2 class="newsletter-h r">Stay Ahead in the <em>Future</em> of Digital Finance</h2>
+  <p class="newsletter-sub r d1">Get insights, trends, and updates from Ewave to help you grow, earn, and stay informed in the evolving Web3 economy.</p>
+  <div class="newsletter-form r d2">
+    <input class="newsletter-input" type="email" placeholder="Enter your email">
+    <button class="newsletter-btn">Subscribe to Our Newsletter →</button>
+  </div>
+  <p class="newsletter-note r d3">Join 10,000+ people already using E-Wave across Africa</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="ewave-landing (2).html" class="foot-logo"><div class="nav-dot"></div>Ewave</a>
+  <div class="foot-links">
+    <a href="ewave-whatsapp.html">WhatsApp Bot</a>
+    <a href="ewave-blog.html">Blog</a>
+    <a href="ewave-about.html">About</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+  </div>
+  <p class="foot-copy">© 2025 Ewave Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('v'); obs.unobserve(x.target); }});
+}, {threshold: 0.08});
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

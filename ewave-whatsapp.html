@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ewave — WhatsApp Bot for Instant Payments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --forest:#6049CC;--forest-mid:#4F3BB0;--forest-light:#7A65D6;
+  --sage:#F0EDFC;--sage-mid:#DDD8F8;--sage-deep:#C4BAF0;
+  --mint:#9B87E8;--mint-light:#EDE8FB;
+  --wa:#25D366;--wa-dark:#128C7E;
+  --white:#FFFFFF;--off-white:#F7F8F5;
+  --ink:#141414;--ink-soft:#4A4A4A;--ink-muted:#8A8A8A;--ink-faint:#C4C4C4;
+  --rule:rgba(0,0,0,0.08);
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',sans-serif;
+  --radius:14px;--radius-sm:8px;--radius-pill:100px;
+  --fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;--fw-extrabold:800;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:60px}
+.nav-logo{font-family:var(--sans);font-size:18px;font-weight:var(--fw-bold);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:7px;letter-spacing:-0.02em}
+.nav-dot{width:8px;height:8px;background:var(--mint);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{font-size:14px;font-weight:var(--fw-medium);color:var(--ink-soft);text-decoration:none;letter-spacing:-0.01em;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--forest);font-weight:var(--fw-semibold)}
+.btn-cta{background:var(--forest);color:white;padding:9px 20px;border-radius:var(--radius-pill);font-size:13.5px;font-weight:var(--fw-semibold);text-decoration:none;letter-spacing:-0.01em;transition:background .2s}
+.btn-cta:hover{background:var(--forest-mid)}
+
+/* ── HERO ── */
+.hero{padding:72px 5% 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:48px}}
+
+.hero-left{}
+.coming-soon-badge{display:inline-flex;align-items:center;gap:7px;background:var(--mint-light);color:var(--forest);font-size:12px;font-weight:var(--fw-bold);padding:6px 14px;border-radius:var(--radius-pill);letter-spacing:.02em;margin-bottom:24px}
+.coming-soon-badge svg{width:14px;height:14px}
+.hero-h1{font-family:var(--sans);font-size:clamp(40px,5vw,60px);font-weight:var(--fw-extrabold);line-height:1.05;letter-spacing:-0.04em;color:var(--ink);margin-bottom:20px}
+.hero-h1 span{color:var(--forest)}
+.hero-p{font-size:16.5px;font-weight:var(--fw-regular);color:var(--ink-soft);line-height:1.72;letter-spacing:-0.01em;max-width:46ch;margin-bottom:32px}
+
+.notify-form{display:flex;gap:10px;margin-bottom:32px;max-width:440px}
+.notify-input{flex:1;padding:13px 20px;border-radius:var(--radius-pill);border:1px solid var(--rule);background:white;font-family:var(--sans);font-size:14px;font-weight:var(--fw-medium);color:var(--ink);outline:none;transition:border-color .2s;letter-spacing:-0.01em}
+.notify-input:focus{border-color:var(--forest)}
+.notify-input::placeholder{color:var(--ink-muted)}
+.notify-btn{background:var(--forest);color:white;padding:13px 24px;border-radius:var(--radius-pill);font-family:var(--sans);font-size:14px;font-weight:var(--fw-bold);border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s;letter-spacing:-0.01em}
+.notify-btn:hover{opacity:.87}
+
+.follow-row{display:flex;align-items:center;gap:14px}
+.follow-label{font-size:13px;font-weight:var(--fw-semibold);color:var(--ink-muted);letter-spacing:-0.01em}
+.social-icons{display:flex;gap:10px}
+.social-icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:all .2s;text-decoration:none}
+.social-icon:hover{border-color:var(--forest);color:var(--forest);background:var(--mint-light)}
+
+/* Hero right — phone mockup area */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-img-wrap{position:relative;width:100%;max-width:420px}
+.hero-img-bg{width:100%;height:420px;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#e8e0f5 0%,#f5f2fc 60%,#ede8fb 100%);position:relative;display:flex;align-items:center;justify-content:center}
+
+/* Person illustration placeholder */
+.person-silhouette{width:220px;height:320px;background:linear-gradient(180deg,#c4bae0 0%,#a89ed4 100%);border-radius:110px 110px 40px 40px;position:relative;overflow:hidden}
+.person-silhouette::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:280px;height:180px;background:linear-gradient(180deg,#7A65D6 0%,#6049CC 100%);border-radius:50% 50% 0 0}
+
+/* Active now floating card */
+.active-card{position:absolute;bottom:28px;left:-20px;background:white;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(96,73,204,0.15);border:1px solid var(--rule)}
+.active-avatar{width:36px;height:36px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.active-avatar svg{width:20px;height:20px}
+.active-text{}
+.active-label{font-size:11px;font-weight:var(--fw-bold);color:var(--wa-dark);letter-spacing:.02em;text-transform:uppercase}
+.active-sub{font-size:12px;font-weight:var(--fw-medium);color:var(--ink-soft)}
+.active-dot{width:8px;height:8px;border-radius:50%;background:var(--wa);position:absolute;top:14px;right:16px;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+
+/* ── WHY SECTION ── */
+.why-section{background:var(--off-white);padding:80px 5%;border-top:1px solid var(--rule)}
+.section-header{text-align:center;margin-bottom:52px}
+.section-eyebrow{display:inline-block;background:var(--mint-light);color:var(--forest);font-size:11.5px;font-weight:var(--fw-bold);padding:5px 14px;border-radius:var(--radius-pill);letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.section-h{font-family:var(--sans);font-size:clamp(26px,3vw,40px);font-weight:var(--fw-extrabold);color:var(--ink);letter-spacing:-0.035em;line-height:1.1;margin-bottom:12px}
+.section-sub{font-size:15.5px;color:var(--ink-soft);max-width:46ch;margin:0 auto;line-height:1.7}
+
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.why-grid{grid-template-columns:1fr}}
+
+.why-card{background:white;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 24px;transition:transform .25s,box-shadow .25s}
+.why-card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(96,73,204,0.09)}
+.why-card.featured{background:var(--forest);border-color:var(--forest)}
+.why-icon{width:44px;height:44px;border-radius:12px;background:var(--mint-light);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.why-card.featured .why-icon{background:rgba(255,255,255,0.15)}
+.why-icon svg{width:22px;height:22px}
+.why-title{font-size:15px;font-weight:var(--fw-bold);color:var(--ink);margin-bottom:8px;letter-spacing:-0.02em}
+.why-card.featured .why-title{color:white}
+.why-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.65}
+.why-card.featured .why-desc{color:rgba(255,255,255,0.65)}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:80px 5%;background:white;border-top:1px solid var(--rule)}
+.how-steps{display:flex;align-items:flex-start;justify-content:center;gap:0;max-width:900px;margin:0 auto;position:relative}
+@media(max-width:700px){.how-steps{flex-direction:column;gap:32px;align-items:center}}
+
+.how-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 16px}
+.how-connector{flex:0 0 80px;display:flex;align-items:center;justify-content:center;padding-top:32px}
+@media(max-width:700px){.how-connector{display:none}}
+
+.step-circle{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative}
+.step-circle.wa{background:var(--wa)}
+.step-circle.dark{background:var(--ink)}
+.step-circle.purple{background:var(--forest)}
+.step-circle svg{width:32px;height:32px}
+.step-num{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:var(--forest);color:white;font-size:11px;font-weight:var(--fw-bold);display:flex;align-items:center;justify-content:center;border:2px solid white}
+.step-circle.wa .step-num{background:var(--ink)}
+.step-circle.dark .step-num{background:var(--forest)}
+
+.step-title{font-size:16px;font-weight:var(--fw-bold);color:var(--ink);margin-bottom:8px;letter-spacing:-0.02em}
+.step-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.65;max-width:18ch;margin:0 auto}
+
+.connector-line{display:flex;align-items:center;gap:4px}
+.connector-line span{width:6px;height:6px;border-radius:50%;background:var(--sage-deep)}
+.connector-line span:nth-child(2){background:var(--mint)}
+.connector-line span:nth-child(3){background:var(--forest)}
+
+/* ── FAQ ── */
+.faq-section{padding:80px 5%;background:var(--off-white);border-top:1px solid var(--rule)}
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-radius:var(--radius);overflow:hidden;margin-bottom:10px}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:white;border:1px solid var(--rule);font-size:15px;font-weight:var(--fw-semibold);color:var(--ink);cursor:pointer;text-align:left;border-radius:var(--radius);transition:background .2s;letter-spacing:-0.01em;font-family:var(--sans)}
+.faq-q:hover{background:var(--mint-light)}
+.faq-item.open .faq-q{background:var(--forest);color:white;border-color:var(--forest);border-radius:var(--radius) var(--radius) 0 0}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:16px;color:var(--ink-muted)}
+.faq-item.open .faq-icon{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white}
+.faq-a{display:none;padding:18px 24px 22px;background:var(--forest);border:1px solid var(--forest);border-top:none;border-radius:0 0 var(--radius) var(--radius)}
+.faq-item.open .faq-a{display:block}
+.faq-a p{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.72;letter-spacing:-0.01em}
+
+/* ── NEWSLETTER ── */
+.newsletter{background:var(--ink);padding:80px 5%;text-align:center;position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(96,73,204,0.25) 0%,transparent 70%);top:-200px;left:50%;transform:translateX(-50%);pointer-events:none}
+.newsletter-h{font-family:var(--sans);font-size:clamp(28px,4vw,48px);font-weight:var(--fw-extrabold);color:white;letter-spacing:-0.04em;line-height:1.1;max-width:16ch;margin:0 auto 16px;position:relative}
+.newsletter-h em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--mint)}
+.newsletter-sub{font-size:15.5px;color:rgba(255,255,255,0.5);max-width:48ch;margin:0 auto 36px;line-height:1.7;position:relative}
+.newsletter-form{display:flex;gap:10px;max-width:480px;margin:0 auto 16px;position:relative}
+.newsletter-input{flex:1;padding:14px 22px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);font-family:var(--sans);font-size:14px;font-weight:var(--fw-medium);color:white;outline:none;letter-spacing:-0.01em;transition:border-color .2s}
+.newsletter-input::placeholder{color:rgba(255,255,255,0.35)}
+.newsletter-input:focus{border-color:var(--mint)}
+.newsletter-btn{background:var(--forest);color:white;padding:14px 24px;border-radius:var(--radius-pill);font-family:var(--sans);font-size:13.5px;font-weight:var(--fw-bold);border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s;letter-spacing:-0.01em}
+.newsletter-btn:hover{opacity:.88}
+.newsletter-note{font-size:12px;color:rgba(255,255,255,0.3);position:relative}
+
+/* ── FOOTER ── */
+footer{background:white;border-top:1px solid var(--rule);padding:36px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.foot-logo{font-family:var(--sans);font-size:17px;font-weight:var(--fw-bold);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;letter-spacing:-0.02em}
+.foot-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.foot-links a{font-size:13px;font-weight:var(--fw-medium);color:var(--ink-muted);text-decoration:none;letter-spacing:-0.01em;transition:color .2s}
+.foot-links a:hover{color:var(--ink)}
+.foot-copy{font-size:12px;font-weight:var(--fw-medium);color:var(--ink-faint)}
+
+/* ── ANIMATIONS ── */
+.r{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.r.v{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
+  <a href="ewave-landing (2).html" class="nav-logo"><div class="nav-dot"></div>Ewave</a>
+  <div class="nav-links">
+    <a href="ewave-whatsapp.html" class="active">WhatsApp Bot</a>
+    <a href="ewave-blog.html">Blogs</a>
+    <a href="ewave-about.html">About Us</a>
+    <a href="#" class="btn-cta">Get Started →</a>
+  </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="background:var(--off-white);border-bottom:1px solid var(--rule);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(96,73,204,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(96,73,204,0.05) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 40%,transparent 100%);pointer-events:none;z-index:0;"></div>
+<div class="hero" style="position:relative;z-index:1;">
+  <div class="hero-left">
+    <div class="coming-soon-badge r">
+      <svg fill="none" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      Coming Soon
+    </div>
+    <h1 class="hero-h1 r d1">WhatsApp Bot for<br><span>Instant Payments</span></h1>
+    <p class="hero-p r d2">Get ready everyone! We are currently working on something awesome. Send and receive stablecoins directly through WhatsApp — no app downloads required.</p>
+
+    <div class="notify-form r d3">
+      <input class="notify-input" type="email" placeholder="Enter your email address">
+      <button class="notify-btn">Notify Me</button>
+    </div>
+
+    <div class="follow-row r d4">
+      <span class="follow-label">Follow us:</span>
+      <div class="social-icons">
+        <a href="#" class="social-icon" title="LinkedIn">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M4 6.5v5M4 4.5v.5M7 11.5v-3a1.5 1.5 0 013 0v3M7 6.5v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="X / Twitter">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2 2l5 5.5L2 14h2l3.5-4 3.5 4H14l-5.2-5.8L14 2h-2l-3 3.5L5.5 2H2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="Instagram">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2.8" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right r d2">
+    <div class="hero-img-wrap">
+      <div class="hero-img-bg">
+        <!-- Abstract person illustration -->
+        <svg width="280" height="380" viewBox="0 0 280 380" fill="none" style="position:absolute;opacity:0.15">
+          <ellipse cx="140" cy="100" rx="50" ry="55" fill="#6049CC"/>
+          <rect x="60" y="160" width="160" height="200" rx="40" fill="#6049CC"/>
+        </svg>
+        <!-- Phone illustration -->
+        <div style="position:relative;z-index:2;">
+          <div style="width:140px;height:240px;background:white;border-radius:24px;box-shadow:0 20px 60px rgba(96,73,204,0.2);padding:14px;position:relative;border:6px solid #1a1a1a;">
+            <!-- Phone screen -->
+            <div style="background:#ECE5DD;border-radius:14px;height:100%;overflow:hidden;display:flex;flex-direction:column;">
+              <!-- Chat header -->
+              <div style="background:var(--wa-dark);padding:8px 10px;display:flex;align-items:center;gap:6px;">
+                <div style="width:24px;height:24px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                </div>
+                <span style="font-size:9px;font-weight:700;color:white;letter-spacing:.02em;">Ewave Bot</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.7);margin-left:auto;">online</span>
+              </div>
+              <!-- Chat bubbles -->
+              <div style="flex:1;padding:8px 6px;display:flex;flex-direction:column;gap:6px;overflow:hidden;">
+                <div style="background:white;border-radius:10px 10px 10px 2px;padding:6px 8px;max-width:80%;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">Hi! Send $20 to Sarah 👋</p>
+                  <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:41</p>
+                </div>
+                <div style="background:#DCF8C6;border-radius:10px 10px 2px 10px;padding:6px 8px;max-width:80%;align-self:flex-end;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">✅ $20 USDC sent to Sarah!</p>
+                  <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:41 ✓✓</p>
+                </div>
+                <div style="background:white;border-radius:10px 10px 10px 2px;padding:6px 8px;max-width:80%;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">Check my balance 💰</p>
+                  <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:42</p>
+                </div>
+                <div style="background:#DCF8C6;border-radius:10px 10px 2px 10px;padding:6px 8px;max-width:85%;align-self:flex-end;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">💵 Balance: $480.00 USDC</p>
+                  <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:42 ✓✓</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Now floating card -->
+      <div class="active-card">
+        <div class="active-avatar">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+        </div>
+        <div class="active-text">
+          <div class="active-label">Active Now</div>
+          <div class="active-sub">WhatsApp Bot</div>
+        </div>
+        <div class="active-dot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WHY SECTION -->
+<section class="why-section">
+  <div class="section-header r">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-h">Why Choose Ewave WhatsApp Bot?</h2>
+    <p class="section-sub">Experience the future of mobile payments with our WhatsApp-powered solution</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card featured r">
+      <div class="why-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><path d="M11 2v18M2 11h18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="why-title">Instant Transactions</div>
+      <div class="why-desc">Send and receive stablecoins directly through WhatsApp</div>
+    </div>
+    <div class="why-card r d1">
+      <div class="why-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8" stroke="var(--forest)" stroke-width="1.6"/><path d="M11 7v4.5l3 1.5" stroke="var(--forest)" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div class="why-title">Lightning Fast</div>
+      <div class="why-desc">Process payments in seconds with simple chat commands</div>
+    </div>
+    <div class="why-card r d2">
+      <div class="why-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><path d="M11 2l7 3.5v6c0 4.5-3.5 8-7 9-3.5-1-7-4.5-7-9V5.5L11 2z" stroke="var(--forest)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="why-title">Secure & Safe</div>
+      <div class="why-desc">Bank-level security for all your transactions</div>
+    </div>
+    <div class="why-card r d3">
+      <div class="why-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8" stroke="var(--forest)" stroke-width="1.6"/><path d="M11 4c0 0-4 3-4 7s4 7 4 7M11 4c0 0 4 3 4 7s-4 7-4 7M3 11h16" stroke="var(--forest)" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="why-title">Global Access</div>
+      <div class="why-desc">Send money anywhere in Africa, anytime</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-header r">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-h">How It Works</h2>
+    <p class="section-sub">Simple, fast, and secure payments in just 3 steps</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step r d1">
+      <div class="step-circle wa">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+        <div class="step-num">1</div>
+      </div>
+      <div class="step-title">Start a Chat</div>
+      <div class="step-desc">Open WhatsApp and message our bot at +234 XXX XXX XXXX</div>
+    </div>
+
+    <div class="how-connector r d1">
+      <div class="connector-line">
+        <span></span><span></span><span></span><span></span><span></span>
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="how-step r d2">
+      <div class="step-circle dark">
+        <svg width="32" height="32" fill="none" viewBox="0 0 32 32"><path d="M8 10h16M8 16h10M8 22h12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="step-num">2</div>
+      </div>
+      <div class="step-title">Send Commands</div>
+      <div class="step-desc">Use simple commands like "send $10 to John" to transfer money</div>
+    </div>
+
+    <div class="how-connector r d2">
+      <div class="connector-line">
+        <span></span><span></span><span></span><span></span><span></span>
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="how-step r d3">
+      <div class="step-circle purple">
+        <svg width="32" height="32" fill="none" viewBox="0 0 32 32"><path d="M8 16l5 5 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="step-num">3</div>
+      </div>
+      <div class="step-title">Confirm & Done</div>
+      <div class="step-desc">Confirm your transaction with a PIN and you're all set</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-header r">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-h">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about the Ewave WhatsApp Bot</p>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item open r">
+      <button class="faq-q">
+        Do I need to download an app?
+        <span class="faq-icon">−</span>
+      </button>
+      <div class="faq-a">
+        <p>No! E-Wave WhatsApp Bot works directly in WhatsApp. Just save our number and start chatting. No downloads, no sign-ups, no hassle — just instant payments right in your existing WhatsApp.</p>
+      </div>
+    </div>
+    <div class="faq-item r d1">
+      <button class="faq-q">
+        Is it safe to use?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Absolutely. Every transaction is protected with bank-grade 256-bit encryption and requires PIN confirmation. Your funds are secured by multi-signature wallet technology and we are fully compliant with global and local financial regulations.</p>
+      </div>
+    </div>
+    <div class="faq-item r d2">
+      <button class="faq-q">
+        Which countries can use this service?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Ewave WhatsApp Bot is available across 54+ countries, with a primary focus on Africa. We currently support Nigeria, Ghana, Kenya, South Africa, and are rapidly expanding to more countries across the continent.</p>
+      </div>
+    </div>
+    <div class="faq-item r d3">
+      <button class="faq-q">
+        Are there any fees?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Ewave offers zero wire transfer fees for sending stablecoins. Standard network fees may apply for on-chain transactions, but these are minimal. We always show you the full cost before you confirm any transaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2 class="newsletter-h r">Stay Ahead in the <em>Future</em> of Digital Finance</h2>
+  <p class="newsletter-sub r d1">Get insights, trends, and updates from Ewave to help you grow, earn, and stay informed in the evolving Web3 economy.</p>
+  <div class="newsletter-form r d2">
+    <input class="newsletter-input" type="email" placeholder="Enter your email">
+    <button class="newsletter-btn">Subscribe to Our Newsletter →</button>
+  </div>
+  <p class="newsletter-note r d3">Join 10,000+ people already using E-Wave across Africa</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="ewave-landing (2).html" class="foot-logo"><div class="nav-dot"></div>Ewave</a>
+  <div class="foot-links">
+    <a href="ewave-whatsapp.html">WhatsApp Bot</a>
+    <a href="ewave-blog.html">Blog</a>
+    <a href="ewave-about.html">About</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+  </div>
+  <p class="foot-copy">© 2025 Ewave Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('v'); obs.unobserve(x.target); }});
+}, {threshold: 0.1});
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-icon').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.querySelector('.faq-icon').textContent = '−';
+    }
+  });
+});
+
+// Notify form
+document.querySelector('.notify-btn').addEventListener('click', function() {
+  const input = document.querySelector('.notify-input');
+  if(input.value && input.value.includes('@')) {
+    this.textContent = '✓ You\'re on the list!';
+    this.style.background = '#25D366';
+    input.disabled = true;
+    this.disabled = true;
+  } else {
+    input.style.borderColor = '#E24B4A';
+    input.placeholder = 'Please enter a valid email';
+    setTimeout(() => { input.style.borderColor = ''; input.placeholder = 'Enter your email address'; }, 2000);
+  }
+});
+</script>
+</body>
+</html>
