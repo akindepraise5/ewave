@@ -812,6 +812,41 @@
     .d3 {
       transition-delay: .3s
     }
+
+    /* MOBILE NAV */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink);
+      padding: 5px;
+    }
+
+    @media(max-width:768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px 5%;
+        border-bottom: 1px solid var(--rule);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .newsletter-form { flex-direction: column; }
+    }
   </style>
 </head>
 
@@ -824,7 +859,8 @@
       <a href="index.html" class="nav-logo">
         <div class="nav-dot"></div>ewave
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <div class="nav-links" id="navLinks">
         <a href="ewave-whatsapp.html">WhatsApp Bot</a>
         <a href="ewave-blog.html" class="active">Blogs</a>
         <a href="ewave-about.html">About Us</a>
@@ -1154,6 +1190,15 @@
       e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('v'); obs.unobserve(x.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        navToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      });
+    }
 
     // Filter pills
     const pills = document.querySelectorAll('.filter-pill');
