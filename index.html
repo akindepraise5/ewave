@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ewave — Stablecoin Payments for Africa</title>
+  <title>ewave — Stablecoin Payments for Africa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -590,22 +590,55 @@
     }
 
     /* LOGOS */
-    .logos {
+    .logos-section {
       background: var(--forest);
-      padding: 22px 5%;
+      padding: 22px 0;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .logos-track {
+      display: flex;
+      width: fit-content;
+      animation: marquee-lr 30s linear infinite;
+    }
+
+    .logos-content {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
+      gap: 4rem;
+      padding-right: 4rem;
+    }
+
+    .logo-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+      cursor: default;
+    }
+
+    .logo-item:hover {
+      opacity: 1;
+    }
+
+    .logo-flag {
+      font-size: 18px;
+      line-height: 1;
     }
 
     .logo-txt {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: var(--fw-bold);
-      color: rgba(255, 255, 255, 0.35);
+      color: white;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+    }
+
+    @keyframes marquee-lr {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
     }
 
     /* SHARED SECTION */
@@ -1294,6 +1327,7 @@
       overflow-x: auto;
       border-bottom: 1px solid var(--rule);
       scrollbar-width: none;
+
     }
 
     .fshow-tabs::-webkit-scrollbar {
@@ -1704,7 +1738,7 @@
   <!-- BANNER -->
   <div class="banner">
     <span class="banner-pill">NEW</span>
-    Ewave WhatsApp Bot is live — send money without the app.
+    ewave WhatsApp Bot is live — send money without the app.
     <a href="#">Try it now →</a>
   </div>
 
@@ -1713,7 +1747,7 @@
     <div class="nav-inner"
       style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
       <a href="index.html" class="nav-logo">
-        <div class="nav-dot"></div>Ewave
+        <div class="nav-dot"></div>ewave
       </a>
       <div class="nav-links">
         <a href="ewave-whatsapp.html">WhatsApp Bot</a>
@@ -1728,10 +1762,10 @@
   <section class="hero">
     <div class="hero-grid"></div>
 
-    <div class="eyebrow-badge r"><span class="eyebrow-badge-dot"></span>Stablecoin payments — Africa &amp; beyond</div>
-    <h1 class="hero-h1 r d1">Send money without borders, with stablecoins</h1>
-    <p class="hero-p r d2">Stay organized, transact globally, and get paid faster. Our all-in-one stablecoin platform
-      keeps your money working — anywhere, anytime.</p>
+    <!-- <div class="eyebrow-badge r"><span class="eyebrow-badge-dot"></span>Stablecoin payments — Africa &amp; beyond</div> -->
+    <h1 class="hero-h1 r d1">Money without borders, opportunities without limits</h1>
+    <p class="hero-p r d2">With ewave, you can stay organized, transact globally, and get paid faster without friction.
+    </p>
     <div class="hero-btns r d3">
       <a href="#" class="btn-dark">Get Started for Free</a>
       <a href="#" class="btn-light">See How It Works <span class="btn-arrow">›</span></a>
@@ -1754,7 +1788,7 @@
     <div class="mockup-wrap r d4">
       <div class="mockup-bar">
         <div class="mock-logo">
-          <div class="mock-logo-dot"></div>Ewave
+          <div class="mock-logo-dot"></div>ewave
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:11px;color:var(--ink-muted);">Edited 1 day ago</span>
@@ -1817,13 +1851,29 @@
   </section>
 
   <!-- LOGOS -->
-  <div class="logos">
-    <span class="logo-txt">OPENAI</span>
-    <span class="logo-txt">BINANCE</span>
-    <span class="logo-txt">FLUTTERWAVE</span>
-    <span class="logo-txt">PAYSTACK</span>
-    <span class="logo-txt">CIRCLE</span>
-    <span class="logo-txt">TEAMWORK</span>
+  <div class="logos-section">
+    <div class="logos-track">
+      <!-- First Set -->
+      <div class="logos-content">
+        <div class="logo-item"><span class="logo-flag">🇳🇬</span><span class="logo-txt">Nigeria</span></div>
+        <div class="logo-item"><span class="logo-flag">🇰🇪</span><span class="logo-txt">Kenya</span></div>
+        <div class="logo-item"><span class="logo-flag">🇬🇭</span><span class="logo-txt">Ghana</span></div>
+        <div class="logo-item"><span class="logo-flag">🇷🇼</span><span class="logo-txt">Rwanda</span></div>
+        <div class="logo-item"><span class="logo-flag">🇿🇦</span><span class="logo-txt">South Africa</span></div>
+        <div class="logo-item"><span class="logo-flag">🇨🇲</span><span class="logo-txt">Cameroon</span></div>
+        <div class="logo-item"><span class="logo-flag">🇺🇬</span><span class="logo-txt">Uganda</span></div>
+      </div>
+      <!-- Duplicate Set for Seamless Loop -->
+      <div class="logos-content">
+        <div class="logo-item"><span class="logo-flag">🇳🇬</span><span class="logo-txt">Nigeria</span></div>
+        <div class="logo-item"><span class="logo-flag">🇰🇪</span><span class="logo-txt">Kenya</span></div>
+        <div class="logo-item"><span class="logo-flag">🇬🇭</span><span class="logo-txt">Ghana</span></div>
+        <div class="logo-item"><span class="logo-flag">🇷🇼</span><span class="logo-txt">Rwanda</span></div>
+        <div class="logo-item"><span class="logo-flag">🇿🇦</span><span class="logo-txt">South Africa</span></div>
+        <div class="logo-item"><span class="logo-flag">🇨🇲</span><span class="logo-txt">Cameroon</span></div>
+        <div class="logo-item"><span class="logo-flag">🇺🇬</span><span class="logo-txt">Uganda</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- FEATURES SHOWCASE -->
@@ -1844,10 +1894,10 @@
       <!-- 1: Instant Transactions -->
       <div class="fshow-panel on" id="p1">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Instant Transactions</span>
+          <!-- <span class="fshow-eyebrow">Instant Transactions</span> -->
           <h2 class="fshow-h">Send money in <em>seconds,</em> not days</h2>
           <p class="fshow-p">Send and receive stablecoins in real-time. No more waiting days for transfers to clear.
-            Ewave processes transactions in seconds.</p>
+            ewave processes transactions in seconds.</p>
           <div class="fshow-btns">
             <a href="#" class="fshow-cta">Get Started →</a>
           </div>
@@ -1896,7 +1946,7 @@
       <!-- 2: Cross-Border Ready -->
       <div class="fshow-panel" id="p2">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Cross-Border Ready</span>
+          <!-- <span class="fshow-eyebrow">Cross-Border Ready</span> -->
           <h2 class="fshow-h">Send to <em>anyone,</em> anywhere</h2>
           <p class="fshow-p">Send stablecoins to anyone, anywhere in the world. Break free from currency restrictions
             and expensive wire transfers.</p>
@@ -1946,7 +1996,7 @@
       <!-- 3: Digital Dollar Standard -->
       <div class="fshow-panel" id="p3">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Digital Dollar Standard</span>
+          <!-- <span class="fshow-eyebrow">Digital Dollar Standard</span> -->
           <h2 class="fshow-h">Powered by the world's most <em>trusted</em> stablecoins</h2>
           <p class="fshow-p">USDT and USDC — backed by real dollar reserves. Your money, stable and borderless across
             54+ countries.</p>
@@ -1994,7 +2044,7 @@
       <!-- 4: Payment Links -->
       <div class="fshow-panel" id="p4">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Payment Links</span>
+          <!-- <span class="fshow-eyebrow">Payment Links</span> -->
           <h2 class="fshow-h">Get paid with a <em>single</em> link</h2>
           <p class="fshow-p">Share payment links instantly. Receive stablecoin payments from anyone with just a click —
             no wallet address needed.</p>
@@ -2034,7 +2084,7 @@
       <!-- 5: Virtual & Physical Cards -->
       <div class="fshow-panel" id="p5">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Virtual &amp; Physical Cards</span>
+          <!-- <span class="fshow-eyebrow">Virtual &amp; Physical Cards</span> -->
           <h2 class="fshow-h">Spend stablecoins <em>everywhere</em></h2>
           <p class="fshow-p">Spend your stablecoins anywhere. Get virtual and physical debit cards linked to your
             digital dollar wallet.</p>
@@ -2089,7 +2139,7 @@
       <!-- 6: Secure & Reliable -->
       <div class="fshow-panel" id="p6">
         <div class="fshow-left">
-          <span class="fshow-eyebrow">Secure &amp; Reliable</span>
+          <!-- <span class="fshow-eyebrow">Secure &amp; Reliable</span> -->
           <h2 class="fshow-h">Bank-grade security <em>built in</em></h2>
           <p class="fshow-p">Bank-grade security meets blockchain transparency. Your digital assets are protected with
             enterprise-level encryption and multi-signature wallets.</p>
@@ -2148,15 +2198,15 @@
   <!-- FEATURES -->
   <section class="sec features-bg">
     <div style="text-align:center;">
-      <div class="eyebrow-green r">All Modules</div>
+      <!-- <div class="eyebrow-green r">All Modules</div> -->
       <h2 class="h2 r d1" style="max-width:24ch;margin:0 auto 10px;">All your finance modules in <em>one app</em></h2>
       <p class="body-txt r d2" style="margin:0 auto;">We have a range of modules to match your needs, so you can start
         small and scale up.</p>
     </div>
     <div class="tab-row r d2">
-      <button class="tab on">Business account</button>
+      <!-- <button class="tab on">Business account</button>
       <button class="tab">Invoice management</button>
-      <button class="tab">Bookkeeping &amp; spending</button>
+      <button class="tab">Bookkeeping &amp; spending</button> -->
     </div>
     <div class="feat-grid">
       <div class="feat r">
@@ -2165,7 +2215,7 @@
               stroke-linejoin="round" />
           </svg></div>
         <div class="feat-t">Store &amp; Send Securely</div>
-        <div class="feat-d">Safely store and transfer digital dollars using Ewave. Instant and borderless payments with
+        <div class="feat-d">Safely store and transfer digital dollars using ewave. Instant and borderless payments with
           full control over your funds.</div>
         <div class="tags"><span class="tag">Instant</span><span class="tag">Bank-grade</span></div>
       </div>
@@ -2186,7 +2236,7 @@
               stroke-linejoin="round" />
           </svg></div>
         <div class="feat-t">Save &amp; Earn Yield</div>
-        <div class="feat-d">Save and earn yield in stablecoins with Ewave. Protect your money from inflation while
+        <div class="feat-d">Save and earn yield in stablecoins with ewave. Protect your money from inflation while
           growing your savings.</div>
         <div class="tags"><span class="tag">Yield-bearing</span><span class="tag">USD-pegged</span></div>
       </div>
@@ -2196,7 +2246,7 @@
             <path d="M6 9h6M9 6v6" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" />
           </svg></div>
         <div class="feat-t">Buy Stablecoins</div>
-        <div class="feat-d">Top up your Ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly at
+        <div class="feat-d">Top up your ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly at
           the best rates.</div>
         <div class="tags"><span class="tag">Bank transfer</span><span class="tag">Mobile money</span></div>
       </div>
@@ -2217,7 +2267,7 @@
             <path d="M12 14h2v-2" stroke="var(--forest)" stroke-width="1.2" stroke-linecap="round" />
           </svg></div>
         <div class="feat-t">WhatsApp AI Agent</div>
-        <div class="feat-d">Send money, check rates, and manage your wallet through Ewave's WhatsApp AI agent. No app
+        <div class="feat-d">Send money, check rates, and manage your wallet through ewave's WhatsApp AI agent. No app
           needed.</div>
         <div class="tags"><span class="tag">No app needed</span><span class="tag">AI-powered</span></div>
       </div>
@@ -2233,11 +2283,11 @@
         <div class="eyebrow-green r">Who it's for</div>
         <h2 class="h2 r d1">Built for everyone moving <em>value</em> across Africa</h2>
       </div>
-      <div>
-        <p class="body-txt r d2">From freelancers to web3 power users, Ewave fits how you already move money.</p>
+      <!-- <div>
+        <p class="body-txt r d2">From freelancers to web3 power users, ewave fits how you already move money.</p>
         <a href="#" class="btn-dark r d3"
           style="display:inline-flex;margin-top:22px;font-size:13.5px;text-decoration:none;">Explore use cases →</a>
-      </div>
+      </div> -->
     </div>
     <div class="who-grid r">
       <div class="who-item">
@@ -2270,7 +2320,7 @@
     <div class="eyebrow-green r">User Stories</div>
     <h2 class="h2 r d1" style="color:white;">Loved by users <em style="color:var(--mint);">across Africa</em></h2>
     <p style="font-size:15px;color:rgba(255,255,255,0.5);max-width:46ch;margin-top:8px;" class="r d2">See what our users
-      have to say about their experience with Ewave.</p>
+      have to say about their experience with ewave.</p>
     <div class="testi-grid">
       <div class="testi-c r">
         <div class="stars">
@@ -2280,7 +2330,7 @@
           <div class="star"></div>
           <div class="star"></div>
         </div>
-        <div class="testi-q">"Ewave completely transformed how I receive payments from international clients. No more
+        <div class="testi-q">"ewave completely transformed how I receive payments from international clients. No more
           waiting days for bank transfers — it just works."</div>
         <div class="testi-who">
           <div class="testi-av">CO</div>
@@ -2316,7 +2366,7 @@
           <div class="star"></div>
           <div class="star"></div>
         </div>
-        <div class="testi-q">"Getting paid by brands worldwide used to be a headache. Ewave made it seamless — I get my
+        <div class="testi-q">"Getting paid by brands worldwide used to be a headache. ewave made it seamless — I get my
           money instantly, every time."</div>
         <div class="testi-who">
           <div class="testi-av">AM</div>
@@ -2332,7 +2382,7 @@
   <!-- TRUST -->
   <section class="sec-sm trust-bg">
     <div style="text-align:center;margin-bottom:44px;">
-      <div class="eyebrow-green r">Security &amp; Compliance</div>
+      <!-- <div class="eyebrow-green r">Security &amp; Compliance</div> -->
       <h2 class="h2 r d1" style="max-width:22ch;margin:0 auto 10px;">Safe. Transparent. <em>Built for Africa.</em></h2>
       <p class="body-txt r d2" style="margin:0 auto;">We partner with regulated providers to ensure every transaction is
         secure, transparent, and compliant.</p>
@@ -2400,13 +2450,13 @@
       <input class="cta-in" type="email" placeholder="Enter your email">
       <a href="#" class="btn-mint">Get Started →</a>
     </div>
-    <p class="cta-note r d4">Join 10,000+ people already using Ewave across Africa</p>
+    <p class="cta-note r d4">Join 10,000+ people already using ewave across Africa</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <a href="index.html" class="foot-logo">
-      <div class="nav-dot"></div>Ewave
+      <div class="nav-dot"></div>ewave
     </a>
     <div class="foot-links">
       <a href="ewave-whatsapp.html">WhatsApp Bot</a>
@@ -2415,7 +2465,7 @@
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
     </div>
-    <p class="foot-copy">© 2025 Ewave Technologies. All rights reserved.</p>
+    <p class="foot-copy">© 2025 ewave Technologies. All rights reserved.</p>
   </footer>
 
   <script>
