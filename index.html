@@ -107,7 +107,7 @@
     .nav-links a {
       font-size: 14px;
       font-weight: var(--fw-medium);
-      color: var(--ink-soft);
+      /* color: var(--ink-soft); */
       text-decoration: none;
       letter-spacing: -0.01em;
       transition: color 0.2s;
@@ -131,6 +131,10 @@
 
     .btn-cta:hover {
       background: var(--forest-mid);
+    }
+
+    .nav-action {
+      color: var(--ink-soft);
     }
 
     /* BANNER */
@@ -637,8 +641,13 @@
     }
 
     @keyframes marquee-lr {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
+      0% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
     /* SHARED SECTION */
@@ -1327,6 +1336,8 @@
       overflow-x: auto;
       border-bottom: 1px solid var(--rule);
       scrollbar-width: none;
+      width: fit-content;
+      margin-inline: auto;
 
     }
 
@@ -1375,11 +1386,15 @@
     .fshow-panel.flip {}
 
     .fshow-left {
-      padding: 72px 5% 72px 5%;
+      /* padding: 72px 5% 72px 5%; */
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: fit-content;
+      margin-inline: auto;
     }
+
+
 
     .fshow-right {
       background: var(--sage);
@@ -1750,9 +1765,9 @@
         <div class="nav-dot"></div>ewave
       </a>
       <div class="nav-links">
-        <a href="ewave-whatsapp.html">WhatsApp Bot</a>
-        <a href="ewave-blog.html">Blogs</a>
-        <a href="ewave-about.html">About Us</a>
+        <a class="nav-action" href="ewave-whatsapp.html">WhatsApp Bot</a>
+        <a class="nav-action" href="ewave-blog.html">Blogs</a>
+        <a class="nav-action" href="ewave-about.html">About Us</a>
         <a href="#" class="btn-cta">Get Started →</a>
       </div>
     </div>
@@ -1893,6 +1908,7 @@
 
       <!-- 1: Instant Transactions -->
       <div class="fshow-panel on" id="p1">
+
         <div class="fshow-left">
           <!-- <span class="fshow-eyebrow">Instant Transactions</span> -->
           <h2 class="fshow-h">Send money in <em>seconds,</em> not days</h2>
@@ -1902,6 +1918,7 @@
             <a href="#" class="fshow-cta">Get Started →</a>
           </div>
         </div>
+
         <div class="fshow-right">
           <div class="fshow-ui">
             <div class="ui-chip-row">
