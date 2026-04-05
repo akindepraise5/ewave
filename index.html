@@ -67,9 +67,11 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -126,11 +128,13 @@
       font-weight: var(--fw-semibold);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
     }
 
     .btn-cta:hover {
       background: var(--forest-mid);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(96, 73, 204, 0.25);
     }
 
     .nav-action {
@@ -220,10 +224,10 @@
 
     .hero-h1 {
       font-family: var(--sans);
-      font-size: clamp(40px, 6vw, 72px);
+      font-size: clamp(44px, 6.5vw, 78px);
       font-weight: var(--fw-extrabold);
       line-height: 1.05;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
       color: var(--ink);
       max-width: 18ch;
       margin: 0 auto 20px;
@@ -264,11 +268,13 @@
       font-weight: var(--fw-semibold);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: opacity 0.2s;
+      transition: all 0.3s ease;
     }
 
     .btn-dark:hover {
-      opacity: 0.85;
+      opacity: 0.95;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(20, 20, 20, 0.2);
     }
 
     .btn-light {
@@ -281,7 +287,7 @@
       font-weight: var(--fw-medium);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -289,6 +295,8 @@
 
     .btn-light:hover {
       background: var(--off-white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
 
     .btn-arrow {
@@ -373,7 +381,8 @@
       padding: 24px;
       max-width: 900px;
       margin: 0 auto;
-      box-shadow: 0 -8px 60px rgba(96, 73, 204, 0.1), 0 -1px 0 rgba(96, 73, 204, 0.12);
+      box-shadow: 0 -12px 80px rgba(96, 73, 204, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+      backdrop-filter: blur(10px);
     }
 
     .mockup-bar {
@@ -853,11 +862,15 @@
     .who-item {
       background: white;
       padding: 32px 26px;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
     }
 
     .who-item:hover {
       background: var(--off-white);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      z-index: 1;
+      position: relative;
     }
 
     .who-n {
@@ -916,6 +929,13 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .s-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      border-color: rgba(96, 73, 204, 0.15);
     }
 
     .coin-circle {
@@ -952,6 +972,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .s-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(96, 73, 204, 0.3);
     }
 
     .s-lbl {
@@ -1026,6 +1052,15 @@
       padding: 30px 26px;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .testi-c:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .stars {
@@ -1115,6 +1150,13 @@
       border-radius: var(--radius);
       padding: 26px 22px;
       border: 1px solid var(--rule);
+      transition: all 0.3s ease;
+    }
+
+    .trust-c:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      border-color: rgba(96, 73, 204, 0.1);
     }
 
     .trust-icon {
@@ -1357,11 +1399,12 @@
       letter-spacing: -0.01em;
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
-      transition: color .2s, border-color .2s;
+      transition: all 0.3s ease;
     }
 
     .fshow-tab:hover {
       color: var(--ink);
+      transform: translateY(-1px);
     }
 
     .fshow-tab.on {
@@ -1567,6 +1610,12 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .ui-stat:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(96, 73, 204, 0.25);
     }
 
     .ui-stat-lbl {
@@ -1638,6 +1687,13 @@
       padding: 20px 22px;
       border: 1px solid var(--rule);
       margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .ui-speed:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border-color: rgba(96, 73, 204, 0.15);
     }
 
     .ui-speed-num {
@@ -1692,6 +1748,13 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      transition: all 0.3s ease;
+    }
+
+    .ui-coverage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border-color: rgba(96, 73, 204, 0.15);
     }
 
     .ui-coverage-num {
