@@ -92,8 +92,7 @@
       width: 8px;
       height: 8px;
       background: var(--mint);
-      border-radius: 50%;
-      display: inline-block
+      border-radius: 50%
     }
 
     .nav-links {
@@ -950,6 +949,7 @@
       .nav-toggle {
         display: block;
       }
+
       .nav-links {
         display: none;
         position: absolute;
@@ -960,14 +960,18 @@
         flex-direction: column;
         padding: 20px 5%;
         border-bottom: 1px solid var(--rule);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         gap: 1rem;
         align-items: flex-start;
       }
+
       .nav-links.active {
         display: flex;
       }
-      .newsletter-form { flex-direction: column; }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -1223,10 +1227,10 @@
   <section class="newsletter">
     <h2 class="newsletter-h r">Stay Ahead in the <em>Future</em> of Digital Finance</h2>
     <p class="newsletter-sub r d1">Get insights, trends, and updates from ewave to help you grow, earn, and stay
-      informed in the evolving Web3 economy.</p>
+      informed in the evolving digital economy.</p>
     <div class="newsletter-form r d2">
       <input class="newsletter-input" type="email" placeholder="Enter your email">
-      <button class="newsletter-btn">Subscribe to Our Newsletter →</button>
+      <button class="newsletter-btn">Subscribe to Our Newsletter </button>
     </div>
     <p class="newsletter-note r d3">Join 10,000+ people already using eWave across Africa</p>
   </section>
@@ -1239,9 +1243,11 @@
     <div class="foot-links">
       <a href="ewave-whatsapp.html">WhatsApp Bot</a>
       <a href="ewave-blog.html">Blog</a>
-      <a href="ewave-about.html">About</a>
+      <a href="ewave-about.html">About Us</a>
       <a href="#">Privacy</a>
-      <a href="#">Terms</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">AML Policy</a>
+      <a href="#">Privacy Policy</a>
     </div>
     <p class="foot-copy">© 2025 ewave Technologies. All rights reserved.</p>
   </footer>

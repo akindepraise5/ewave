@@ -67,16 +67,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 5%;
-      height: 60px;
+      height: 60px
     }
 
     .nav-logo {
@@ -88,35 +86,38 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.02em
     }
 
     .nav-dot {
       width: 8px;
       height: 8px;
       background: var(--mint);
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
+      border-radius: 50%
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.75rem;
+      gap: 1.75rem
     }
 
     .nav-links a {
       font-size: 14px;
       font-weight: var(--fw-medium);
-      /* color: var(--ink-soft); */
+      color: var(--ink-soft);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: color 0.2s;
+      transition: color .2s
     }
 
     .nav-links a:hover {
-      color: var(--ink);
+      color: var(--ink)
+    }
+
+    .nav-links a.active {
+      color: var(--forest);
+      font-weight: var(--fw-semibold)
     }
 
     .btn-cta {
@@ -128,17 +129,11 @@
       font-weight: var(--fw-semibold);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: all 0.3s ease;
+      transition: background .2s
     }
 
     .btn-cta:hover {
-      background: var(--forest-mid);
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(96, 73, 204, 0.25);
-    }
-
-    .nav-action {
-      color: var(--ink-soft);
+      background: var(--forest-mid)
     }
 
     /* BANNER */
@@ -664,12 +659,15 @@
       padding: 88px 5%;
     }
 
+    .remark {
+      text-align: center;
+    }
+
     .sec-sm {
       padding: 64px 5%;
     }
 
     .eyebrow-green {
-      display: inline-flex;
       background: var(--mint-light);
       color: var(--forest);
       font-size: 11.5px;
@@ -678,7 +676,10 @@
       border-radius: var(--radius-pill);
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      text-align: center;
       margin-bottom: 18px;
+      width: fit-content;
+      margin-inline: auto;
     }
 
     .h2 {
@@ -689,6 +690,7 @@
       letter-spacing: -0.035em;
       color: var(--ink);
       margin-bottom: 12px;
+      text-align: center;
     }
 
     .h2 em {
@@ -825,10 +827,19 @@
     /* WHO */
     .who-wrap {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      place-items: center;
+      text-align: center;
       margin-bottom: 52px;
+    }
+
+    .wrap-fit {
+      width: fit-content;
+      max-width: 600px;
+    }
+
+    .h2 {
+      /* max-width: 600px; */
     }
 
     @media(max-width:768px) {
@@ -931,7 +942,7 @@
       gap: 14px;
       transition: all 0.3s ease;
     }
-    
+
     .s-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
@@ -1227,7 +1238,7 @@
     .cta-p {
       font-size: 15.5px;
       font-weight: var(--fw-regular);
-      color: rgba(255, 255, 255, 0.55);
+      color: white;
       margin: 0 auto 36px;
       max-width: 44ch;
       line-height: 1.7;
@@ -1264,7 +1275,7 @@
     }
 
     .btn-mint {
-      background: var(--mint);
+      background: white;
       color: var(--forest);
       padding: 13px 24px;
       border-radius: var(--radius-pill);
@@ -1875,9 +1886,9 @@
       </a>
       <button class="nav-toggle" id="navToggle">☰</button>
       <div class="nav-links" id="navLinks">
-        <a class="nav-action" href="ewave-whatsapp.html">WhatsApp Bot</a>
-        <a class="nav-action" href="ewave-blog.html">Blogs</a>
-        <a class="nav-action" href="ewave-about.html">About Us</a>
+        <a href="ewave-whatsapp.html">WhatsApp Bot</a>
+        <a href="ewave-blog.html" class="active">Blogs</a>
+        <a href="ewave-about.html">About Us</a>
         <a href="#" class="btn-cta">Get Started </a>
       </div>
     </div>
@@ -1888,20 +1899,23 @@
     <div class="hero-grid"></div>
 
     <!-- <div class="eyebrow-badge r"><span class="eyebrow-badge-dot"></span>Stablecoin payments — Africa &amp; beyond</div> -->
-    <h1 class="hero-h1 r d1">Money without borders, opportunities without limits</h1>
+    <h1 class="hero-h1 r d1">Your money should move as freely as you do</h1>
     <p class="hero-p r d2">With ewave, you can stay organized, transact globally, and get paid faster without friction.
     </p>
     <div class="hero-btns r d3">
       <a href="#" class="btn-dark">Get Started for Free</a>
-      <a href="#" class="btn-light">See How It Works <span class="btn-arrow">›</span></a>
     </div>
 
     <div class="social-proof r d3">
       <div class="proof-avatars">
-        <div class="proof-av a1">CO</div>
-        <div class="proof-av a2">DM</div>
-        <div class="proof-av a3">AM</div>
-        <div class="proof-av a4">KA</div>
+        <img class="proof-av" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User"
+          style="object-fit: cover;">
+        <img class="proof-av" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
+          style="object-fit: cover;">
+        <img class="proof-av" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
+          style="object-fit: cover;">
+        <img class="proof-av" src="https://randomuser.me/api/portraits/men/46.jpg" alt="User"
+          style="object-fit: cover;">
       </div>
       <div class="proof-text">
         <strong>Trusted by 10,000+ users</strong> across Africa and growing
@@ -1916,9 +1930,12 @@
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:11px;color:var(--ink-muted);">Edited 1 day ago</span>
-          <div class="mock-avatar">CO</div>
-          <div class="mock-avatar" style="background:var(--forest-light);margin-left:-8px;">DM</div>
-          <div class="mock-avatar" style="background:var(--mint);margin-left:-8px;">AM</div>
+          <img class="mock-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User"
+            style="object-fit: cover;">
+          <img class="mock-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
+            style="margin-left:-8px; object-fit: cover;">
+          <img class="mock-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
+            style="margin-left:-8px; object-fit: cover;">
         </div>
       </div>
       <div class="mockup-inner">
@@ -2350,6 +2367,17 @@
             <rect x="2" y="4" width="14" height="10" rx="2" stroke="var(--forest)" stroke-width="1.5" />
             <path d="M2 8h14" stroke="var(--forest)" stroke-width="1.5" />
           </svg></div>
+        <div class="feat-t">Withdraw Locally</div>
+        <div class="feat-d">Convert stablecoins to local currency and withdraw to your bank or mobile money. Fast and
+          transparent.</div>
+        <div class="tags"><span class="tag">Same-day</span><span class="tag">All banks</span></div>
+      </div>
+      <div class="feat r d2">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" viewBox="0 0 18 18">
+            <path d="M3 7c0-2.8 2.2-5 5-5h2a5 5 0 010 10H8A5 5 0 013 7z" stroke="var(--forest)" stroke-width="1.5" />
+            <circle cx="13" cy="13" r="3" stroke="var(--forest)" stroke-width="1.5" />
+            <path d="M12 14h2v-2" stroke="var(--forest)" stroke-width="1.2" stroke-linecap="round" />
+          </svg></div>
         <div class="feat-t">Pay Bills in Stablecoins</div>
         <div class="feat-d">Pay for airtime, internet, electricity, and cable TV directly in stablecoins. Fast, easy,
           and affordable.</div>
@@ -2381,17 +2409,7 @@
             <path d="M15 9A6 6 0 113 9a6 6 0 0112 0z" stroke="var(--forest)" stroke-width="1.5" />
             <path d="M9 6v3l2 2" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" />
           </svg></div>
-        <div class="feat-t">Withdraw Locally</div>
-        <div class="feat-d">Convert stablecoins to local currency and withdraw to your bank or mobile money. Fast and
-          transparent.</div>
-        <div class="tags"><span class="tag">Same-day</span><span class="tag">All banks</span></div>
-      </div>
-      <div class="feat r d2">
-        <div class="feat-icon"><svg width="18" height="18" fill="none" viewBox="0 0 18 18">
-            <path d="M3 7c0-2.8 2.2-5 5-5h2a5 5 0 010 10H8A5 5 0 013 7z" stroke="var(--forest)" stroke-width="1.5" />
-            <circle cx="13" cy="13" r="3" stroke="var(--forest)" stroke-width="1.5" />
-            <path d="M12 14h2v-2" stroke="var(--forest)" stroke-width="1.2" stroke-linecap="round" />
-          </svg></div>
+
         <div class="feat-t">WhatsApp AI Agent</div>
         <div class="feat-d">Send money, check rates, and manage your wallet through ewave's WhatsApp AI agent. No app
           needed.</div>
@@ -2405,7 +2423,7 @@
   <!-- WHO -->
   <section class="sec">
     <div class="who-wrap">
-      <div>
+      <div class="wrap-fit">
         <div class="eyebrow-green r">Who it's for</div>
         <h2 class="h2 r d1">Built for everyone moving <em>value</em> across Africa</h2>
       </div>
@@ -2445,7 +2463,8 @@
   <section class="sec testi-bg">
     <div class="eyebrow-green r">User Stories</div>
     <h2 class="h2 r d1" style="color:white;">Loved by users <em style="color:var(--mint);">across Africa</em></h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.5);max-width:46ch;margin-top:8px;" class="r d2">See what our users
+    <p style="font-size:15px;color:rgba(255,255,255,0.5);width:100;margin-top:8px;" class="r d2 remark">See what our
+      users
       have to say about their experience with ewave.</p>
     <div class="testi-grid">
       <div class="testi-c r">
@@ -2569,7 +2588,7 @@
   <section class="cta-bg">
     <div class="cta-circle"></div>
     <div class="eyebrow-green r" style="background:rgba(96,73,204,0.18);color:var(--mint);">Stay informed</div>
-    <h2 class="cta-h r d1">Sign up in minutes. Join the <em>movement.</em></h2>
+    <h2 class="cta-h r d1">Sign up in minutes. Join the movement.</h2>
     <p class="cta-p r d2">Get the latest on digital payments, innovations, and exclusive offers delivered to your inbox.
     </p>
     <div class="cta-form r d3">
@@ -2589,7 +2608,9 @@
       <a href="ewave-blog.html">Blog</a>
       <a href="ewave-about.html">About Us</a>
       <a href="#">Privacy</a>
-      <a href="#">Terms</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">AML Policy</a>
+      <a href="#">Privacy Policy</a>
     </div>
     <p class="foot-copy">© 2025 ewave Technologies. All rights reserved.</p>
   </footer>
