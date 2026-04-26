@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ewave — Stablecoin Payments for Africa</title>
+  <title>Ewave — Stablecoin Payments for Africa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -60,6 +60,7 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       letter-spacing: -0.01em;
+      overflow-x: hidden;
     }
 
     /* NAV */
@@ -108,16 +109,23 @@
       color: var(--ink-soft);
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: color .2s
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--ink)
     }
 
-    .nav-links a.active {
+    .nav-links a.active,
+    .nav-links .btn-cta {
       color: var(--forest);
-      font-weight: var(--fw-semibold)
+      font-weight: var(--fw-semibold);
+    }
+
+    .nav-links .btn-cta {
+      background: var(--forest);
+      color: white;
+      font-weight: var(--fw-semibold);
     }
 
     .btn-cta {
@@ -234,6 +242,30 @@
       font-weight: 300;
       color: var(--forest);
       letter-spacing: -0.02em;
+    }
+
+    .typing-text {
+      display: inline-block;
+      min-width: 3ch;
+      max-width: 6ch;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+    .typing-text::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 1em;
+      margin-left: 6px;
+      background: currentColor;
+      vertical-align: bottom;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero-p {
@@ -370,14 +402,13 @@
 
     /* Dashboard mockup */
     .mockup-wrap {
-      background: white;
-      border: 1px solid rgba(96, 73, 204, 0.15);
-      border-radius: 20px 20px 0 0;
-      padding: 24px;
       max-width: 900px;
       margin: 0 auto;
-      box-shadow: 0 -12px 80px rgba(96, 73, 204, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
-      backdrop-filter: blur(10px);
+      border-radius: 20px 20px 0 0;
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
     .mockup-bar {
@@ -824,7 +855,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* WHO */
+
     .who-wrap {
       display: grid;
       grid-template-columns: 1fr;
@@ -1385,13 +1416,12 @@
     .fshow-tabs {
       display: flex;
       gap: 0;
-      padding: 0 5% 0;
+      padding: 0 5%;
       overflow-x: auto;
       border-bottom: 1px solid var(--rule);
       scrollbar-width: none;
-      width: fit-content;
-      margin-inline: auto;
-
+      width: 100%;
+      margin: 0 auto;
     }
 
     .fshow-tabs::-webkit-scrollbar {
@@ -1437,7 +1467,6 @@
       min-height: 520px;
     }
 
-    .fshow-panel.flip {}
 
     .fshow-left {
       /* padding: 72px 5% 72px 5%; */
@@ -1873,7 +1902,7 @@
   <!-- BANNER -->
   <div class="banner">
     <span class="banner-pill">NEW</span>
-    ewave WhatsApp Bot is live — send money without the app.
+    Ewave WhatsApp Bot is live — send money without the app.
     <a href="#">Try it now </a>
   </div>
 
@@ -1882,12 +1911,12 @@
     <div class="nav-inner"
       style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
       <a href="index.html" class="nav-logo">
-        <div class="nav-dot"></div>ewave
+        <div class="nav-dot"></div>Ewave
       </a>
       <button class="nav-toggle" id="navToggle">☰</button>
       <div class="nav-links" id="navLinks">
         <a href="ewave-whatsapp.html">WhatsApp Bot</a>
-        <a href="ewave-blog.html" class="active">Blogs</a>
+        <a href="ewave-blog.html">Blogs</a>
         <a href="ewave-about.html">About Us</a>
         <a href="#" class="btn-cta">Get Started </a>
       </div>
@@ -1899,8 +1928,9 @@
     <div class="hero-grid"></div>
 
     <!-- <div class="eyebrow-badge r"><span class="eyebrow-badge-dot"></span>Stablecoin payments — Africa &amp; beyond</div> -->
-    <h1 class="hero-h1 r d1">Your money should move as freely as you do</h1>
-    <p class="hero-p r d2">With ewave, you can stay organized, transact globally, and get paid faster without friction.
+    <h1 class="hero-h1 r d1">Your money should move <br> as <span class="typing-text" id="heroTyping"></span>as you do</h1>
+    <p class="hero-p r d2">
+      With Ewave, you can stay organized, transact globally, and get paid faster without friction.
     </p>
     <div class="hero-btns r d3">
       <a href="#" class="btn-dark">Get Started for Free</a>
@@ -1923,72 +1953,7 @@
     </div>
 
     <!-- Dashboard -->
-    <div class="mockup-wrap r d4">
-      <div class="mockup-bar">
-        <div class="mock-logo">
-          <div class="mock-logo-dot"></div>ewave
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="font-size:11px;color:var(--ink-muted);">Edited 1 day ago</span>
-          <img class="mock-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User"
-            style="object-fit: cover;">
-          <img class="mock-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
-            style="margin-left:-8px; object-fit: cover;">
-          <img class="mock-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
-            style="margin-left:-8px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="mockup-inner">
-        <div class="mock-sidebar">
-          <div class="mock-item on"><span class="mock-dot"></span>Overview</div>
-          <div class="mock-item"><span class="mock-dot"></span>Send &amp; Receive</div>
-          <div class="mock-item"><span class="mock-dot"></span>Buy Stablecoins</div>
-          <div class="mock-item"><span class="mock-dot"></span>Savings</div>
-          <div class="mock-item"><span class="mock-dot"></span>Pay Bills</div>
-          <div class="mock-item"><span class="mock-dot"></span>Withdraw</div>
-        </div>
-        <div class="mock-main">
-          <div class="mock-row">
-            <div class="mc">
-              <div class="lbl">USDC Balance</div>
-              <div class="val">$12,840.00</div>
-              <div class="sub">≈ ₦20,104,720</div>
-              <span class="pill-green">↑ 4.2% this month</span>
-            </div>
-            <div class="mc-dk">
-              <div class="lbl-lt">Money Flow</div>
-              <div class="val-lt">$3,192.00</div>
-              <div class="sub-lt">Received this week</div>
-              <span class="pill-dark">↑ Live</span>
-            </div>
-          </div>
-          <div class="tx-box">
-            <div class="lbl" style="margin-bottom:10px;">Recent Transactions</div>
-            <div class="tx-row">
-              <div>
-                <div class="tx-name">🇺🇸 From New York · USDC</div>
-                <div class="tx-t">2 seconds ago</div>
-              </div>
-              <div class="tx-amt">+$850.00</div>
-            </div>
-            <div class="tx-row">
-              <div>
-                <div class="tx-name">Bill Payment · Electricity</div>
-                <div class="tx-t">1 hour ago</div>
-              </div>
-              <div class="tx-amt tx-neg">−$12.40</div>
-            </div>
-            <div class="tx-row">
-              <div>
-                <div class="tx-name">🇬🇧 From London · USDT</div>
-                <div class="tx-t">Yesterday</div>
-              </div>
-              <div class="tx-amt">+$2,200.00</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <img class="mockup-wrap r d4" src="pics/Dashboard.png" alt="Ewave Dashboard">
   </section>
 
   <!-- LOGOS -->
@@ -2039,7 +2004,7 @@
           <!-- <span class="fshow-eyebrow">Instant Transactions</span> -->
           <h2 class="fshow-h">Send money in <em>seconds,</em> not days</h2>
           <p class="fshow-p">Send and receive stablecoins in real-time. No more waiting days for transfers to clear.
-            ewave processes transactions in seconds.</p>
+            Ewave processes transactions in seconds.</p>
           <div class="fshow-btns">
             <a href="#" class="fshow-cta">Get Started </a>
           </div>
@@ -2358,7 +2323,7 @@
               stroke-linejoin="round" />
           </svg></div>
         <div class="feat-t">Store &amp; Send Securely</div>
-        <div class="feat-d">Safely store and transfer digital dollars using ewave. Instant and borderless payments with
+        <div class="feat-d">Safely store and transfer digital dollars using Ewave. Instant and borderless payments with
           full control over your funds.</div>
         <div class="tags"><span class="tag">Instant</span><span class="tag">Bank-grade</span></div>
       </div>
@@ -2390,7 +2355,7 @@
               stroke-linejoin="round" />
           </svg></div>
         <div class="feat-t">Save &amp; Earn Yield</div>
-        <div class="feat-d">Save and earn yield in stablecoins with ewave. Protect your money from inflation while
+        <div class="feat-d">Save and earn yield in stablecoins with Ewave. Protect your money from inflation while
           growing your savings.</div>
         <div class="tags"><span class="tag">Yield-bearing</span><span class="tag">USD-pegged</span></div>
       </div>
@@ -2400,7 +2365,7 @@
             <path d="M6 9h6M9 6v6" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" />
           </svg></div>
         <div class="feat-t">Buy Stablecoins</div>
-        <div class="feat-d">Top up your ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly at
+        <div class="feat-d">Top up your Ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly at
           the best rates.</div>
         <div class="tags"><span class="tag">Bank transfer</span><span class="tag">Mobile money</span></div>
       </div>
@@ -2411,7 +2376,7 @@
           </svg></div>
 
         <div class="feat-t">WhatsApp AI Agent</div>
-        <div class="feat-d">Send money, check rates, and manage your wallet through ewave's WhatsApp AI agent. No app
+        <div class="feat-d">Send money, check rates, and manage your wallet through Ewave's WhatsApp AI agent. No app
           needed.</div>
         <div class="tags"><span class="tag">No app needed</span><span class="tag">AI-powered</span></div>
       </div>
@@ -2465,7 +2430,7 @@
     <h2 class="h2 r d1" style="color:white;">Loved by users <em style="color:var(--mint);">across Africa</em></h2>
     <p style="font-size:15px;color:rgba(255,255,255,0.5);width:100;margin-top:8px;" class="r d2 remark">See what our
       users
-      have to say about their experience with ewave.</p>
+      have to say about their experience with Ewave.</p>
     <div class="testi-grid">
       <div class="testi-c r">
         <div class="stars">
@@ -2475,7 +2440,7 @@
           <div class="star"></div>
           <div class="star"></div>
         </div>
-        <div class="testi-q">"ewave completely transformed how I receive payments from international clients. No more
+        <div class="testi-q">"Ewave completely transformed how I receive payments from international clients. No more
           waiting days for bank transfers — it just works."</div>
         <div class="testi-who">
           <div class="testi-av">CO</div>
@@ -2511,7 +2476,7 @@
           <div class="star"></div>
           <div class="star"></div>
         </div>
-        <div class="testi-q">"Getting paid by brands worldwide used to be a headache. ewave made it seamless — I get my
+        <div class="testi-q">"Getting paid by brands worldwide used to be a headache. Ewave made it seamless — I get my
           money instantly, every time."</div>
         <div class="testi-who">
           <div class="testi-av">AM</div>
@@ -2595,24 +2560,23 @@
       <input class="cta-in" type="email" placeholder="Enter your email">
       <a href="#" class="btn-mint">Get Started </a>
     </div>
-    <p class="cta-note r d4">Join 10,000+ people already using ewave across Africa</p>
+    <p class="cta-note r d4">Join 10,000+ people already using Ewave across Africa</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <a href="index.html" class="foot-logo">
-      <div class="nav-dot"></div>ewave
+      <div class="nav-dot"></div>Ewave
     </a>
     <div class="foot-links">
       <a href="ewave-whatsapp.html">WhatsApp Bot</a>
       <a href="ewave-blog.html">Blog</a>
       <a href="ewave-about.html">About Us</a>
-      <a href="#">Privacy</a>
       <a href="#">Terms of Use</a>
       <a href="#">AML Policy</a>
       <a href="#">Privacy Policy</a>
     </div>
-    <p class="foot-copy">© 2025 ewave Technologies. All rights reserved.</p>
+    <p class="foot-copy">© 2025 Ewave Technologies. All rights reserved.</p>
   </footer>
 
   <script>
@@ -2646,6 +2610,44 @@
         navToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
       });
     }
+
+    const typingWords = ['freely', 'fast', 'secure'];
+    const typingColors = ['#6049CC', '#3056C5', '#FD8419'];
+    const typingElement = document.getElementById('heroTyping');
+    let typingIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function runTyping() {
+      const currentWord = typingWords[typingIndex];
+      const currentColor = typingColors[typingIndex];
+      if (typingElement) typingElement.style.color = currentColor;
+      if (typingElement) typingElement.style.fontStyle = "italic";
+      if (!typingElement) return;
+
+      if (isDeleting) {
+        charIndex -= 1;
+        typingElement.textContent = currentWord.slice(0, charIndex);
+      } else {
+        charIndex += 1;
+        typingElement.textContent = currentWord.slice(0, charIndex);
+      }
+
+      let delay = isDeleting ? 70 : 120;
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        delay = 1200;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        typingIndex = (typingIndex + 1) % typingWords.length;
+        delay = 600;
+      }
+
+      setTimeout(runTyping, delay);
+    }
+
+    runTyping();
   </script>
 </body>
 
