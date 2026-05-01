@@ -11,6 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
   <style>
     *,
     *::before,
@@ -611,9 +612,15 @@
       background: rgba(255, 255, 255, 0.15)
     }
 
-    .value-icon svg {
+    .value-icon svg, .value-icon i {
       width: 24px;
-      height: 24px
+      height: 24px;
+      font-size: 22px;
+      color: var(--forest);
+    }
+
+    .value-card.featured .value-icon i {
+      color: white;
     }
 
     .value-title {
@@ -962,6 +969,10 @@
       box-shadow: 0 6px 15px rgba(96, 73, 204, 0.2);
     }
 
+    .foot-social-link i {
+      font-size: 15px;
+    }
+
     .foot-social-link svg {
       width: 15px;
       height: 15px;
@@ -1195,42 +1206,28 @@
     <div class="values-grid">
       <div class="value-card featured r">
         <div class="value-icon">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path d="M12 2l7 4v6c0 5-3.5 9-7 10.5C8.5 21 5 17 5 12V6l7-4z" stroke="white" stroke-width="1.8"
-              stroke-linejoin="round" />
-            <path d="M9 12l2 2 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <i class="hgi-stroke hgi-shield-tick-01"></i>
         </div>
         <div class="value-title">Mission-Driven</div>
         <div class="value-desc">Empowering financial inclusion across Africa through accessible Web3 technology.</div>
       </div>
       <div class="value-card r d1">
         <div class="value-icon">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="8" r="4" stroke="var(--forest)" stroke-width="1.8" />
-            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+          <i class="hgi-stroke hgi-user-group"></i>
         </div>
         <div class="value-title">User-Centric</div>
         <div class="value-desc">Building products that solve real problems for real people in emerging markets.</div>
       </div>
       <div class="value-card r d2">
         <div class="value-icon">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="var(--forest)" stroke-width="1.8"
-              stroke-linejoin="round" />
-          </svg>
+          <i class="hgi-stroke hgi-idea-01"></i>
         </div>
         <div class="value-title">Innovation First</div>
         <div class="value-desc">Pioneering the future of digital payments with cutting-edge blockchain solutions.</div>
       </div>
       <div class="value-card r d3">
         <div class="value-icon">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="9" stroke="var(--forest)" stroke-width="1.8" />
-            <path d="M12 6v6l4 2" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M8 3.5C6 5 4.5 7 4 9.5" stroke="var(--forest)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+          <i class="hgi-stroke hgi-global"></i>
         </div>
         <div class="value-title">Community-Focused</div>
         <div class="value-desc">Growing together with our users, partners, and the broader ecosystem.</div>
