@@ -681,7 +681,7 @@
       width: 24px;
       height: auto;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       display: block;
     }
 
@@ -819,11 +819,15 @@
     }
 
     .feat {
-      background: white;
+      background: var(--sage);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 24px;
       border: 1px solid var(--rule);
-      transition: box-shadow 0.22s, transform 0.22s;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 100%;
     }
 
     .feat:hover {
@@ -831,20 +835,20 @@
       transform: translateY(-2px);
     }
 
-    .feat-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: var(--sage);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
+    .feat-content {
+      flex: 1;
     }
 
-    .feat-icon i {
-      font-size: 18px;
-      color: var(--forest);
+    .feat-illus {
+      max-height: 115px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.08));
+      flex-shrink: 0;
+    }
+
+    .feat-icon {
+      display: none;
     }
 
     .feat-t {
@@ -860,6 +864,19 @@
       font-weight: var(--fw-regular);
       color: var(--ink-soft);
       line-height: 1.68;
+    }
+
+    @media(max-width:480px) {
+      .feat {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .feat-illus {
+        margin-top: 24px;
+        max-height: 100px;
+      }
     }
 
     .tags {
@@ -906,54 +923,106 @@
     .who-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-      border-radius: var(--radius);
-      overflow: hidden;
+      gap: 24px;
+      margin-top: 48px;
     }
 
-    @media(max-width:900px) {
+    @media(max-width:1024px) {
       .who-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media(max-width:480px) {
+    @media(max-width:580px) {
       .who-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
 
     .who-item {
       background: white;
-      padding: 32px 26px;
+      padding: 12px;
+      border-radius: 20px;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .who-item:hover {
-      background: var(--off-white);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-      z-index: 1;
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .who-img-wrap {
       position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .who-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .who-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(96, 73, 204, 0.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .who-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 34px;
+      height: 34px;
+      background: var(--forest);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    .who-content {
+      padding: 0 8px 12px;
+    }
+
+    .who-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .who-n {
-      font-family: var(--sans);
       font-size: 11px;
-      font-weight: var(--fw-bold);
-      color: var(--sage-deep);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      font-weight: 800;
+      color: var(--forest);
+      background: var(--sage);
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0;
+      margin-bottom: 0;
     }
 
     .who-t {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: var(--fw-bold);
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 0;
       letter-spacing: -0.02em;
     }
 
@@ -961,7 +1030,7 @@
       font-size: 13.5px;
       font-weight: var(--fw-regular);
       color: var(--ink-soft);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     /* STABLECOINS */
@@ -1457,13 +1526,16 @@
         padding: 48px 5%;
         gap: 2rem;
       }
+
       .foot-links {
         flex-direction: column;
         gap: 1rem;
       }
+
       .foot-socials {
         order: 3;
       }
+
       .foot-copy {
         order: 4;
         width: 100%;
@@ -1508,7 +1580,8 @@
 
     .fshow-tabs {
       display: flex;
-      justify-content: center; /* Centralize the tabs */
+      justify-content: center;
+      /* Centralize the tabs */
       gap: 0;
       padding: 0 5%;
       overflow-x: auto;
@@ -1576,9 +1649,11 @@
     .fshow-right {
       background: var(--sage);
       display: flex;
-      align-items: stretch; /* Stretch to fill height */
+      align-items: stretch;
+      /* Stretch to fill height */
       justify-content: stretch;
-      padding: 0; /* Remove padding for full-bleed effect */
+      padding: 0;
+      /* Remove padding for full-bleed effect */
       overflow: hidden;
     }
 
@@ -1687,7 +1762,8 @@
     .fshow-img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Fill the entire surrounding space */
+      object-fit: cover;
+      /* Fill the entire surrounding space */
       display: block;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -2195,9 +2271,11 @@
       .nav-new-toggle {
         display: block;
       }
+
       .nav-new-cta {
         display: none;
       }
+
       .nav-new-links {
         display: none;
         position: absolute;
@@ -2213,6 +2291,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         gap: 16px;
       }
+
       .nav-new-links.active {
         display: flex;
       }
@@ -2298,11 +2377,13 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
     }
+
     .hero-new-proof-av:hover {
       transform: scale(1.15);
       z-index: 10;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
+
     .hero-new-proof-av:first-child {
       margin-left: 0;
     }
@@ -2374,28 +2455,35 @@
         font-size: 42px;
         line-height: 1.2;
       }
+
       .hero-new-coin {
         display: none;
       }
+
       .hero-new-dash-glow-1 {
         width: 100%;
         height: 250px;
         filter: blur(40px);
       }
+
       .hero-new-dash-wrap {
         margin-top: 40px;
       }
+
       .hero-new-proof {
         flex-direction: column;
         gap: 8px;
       }
+
       .hero-new-proof-text {
         text-align: center;
       }
+
       .hero-new-p {
         font-size: 16px;
       }
     }
+
     /* --- END HERO REDESIGN --- */
   </style>
 </head>
@@ -2453,7 +2541,9 @@
             <img class="hero-new-proof-av" src="pics/african-teenage-girl-portrait-happy-smiling-face.jpg" alt="User">
             <img class="hero-new-proof-av" src="pics/portrait-young-happy-man.jpg" alt="User">
             <img class="hero-new-proof-av" src="pics/smiley-african-woman-with-golden-earrings.jpg" alt="User">
-            <img class="hero-new-proof-av" src="pics/woman-looks-directly-camera-has-big-eyes-full-lips-wears-headband-shirt-earrings-isolated-vivid-yellow.jpg" alt="User">
+            <img class="hero-new-proof-av"
+              src="pics/woman-looks-directly-camera-has-big-eyes-full-lips-wears-headband-shirt-earrings-isolated-vivid-yellow.jpg"
+              alt="User">
           </div>
           <p class="hero-new-proof-text">
             <strong>Trusted by 10,000+ users</strong><br />
@@ -2488,23 +2578,37 @@
     <div class="logos-track">
       <!-- First Set -->
       <div class="logos-content">
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ng.png" class="logo-flag" alt="Nigeria"><span class="logo-txt">Nigeria</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ke.png" class="logo-flag" alt="Kenya"><span class="logo-txt">Kenya</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/gh.png" class="logo-flag" alt="Ghana"><span class="logo-txt">Ghana</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/rw.png" class="logo-flag" alt="Rwanda"><span class="logo-txt">Rwanda</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/za.png" class="logo-flag" alt="South Africa"><span class="logo-txt">South Africa</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/cm.png" class="logo-flag" alt="Cameroon"><span class="logo-txt">Cameroon</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ug.png" class="logo-flag" alt="Uganda"><span class="logo-txt">Uganda</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ng.png" class="logo-flag" alt="Nigeria"><span
+            class="logo-txt">Nigeria</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ke.png" class="logo-flag" alt="Kenya"><span
+            class="logo-txt">Kenya</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/gh.png" class="logo-flag" alt="Ghana"><span
+            class="logo-txt">Ghana</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/rw.png" class="logo-flag" alt="Rwanda"><span
+            class="logo-txt">Rwanda</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/za.png" class="logo-flag" alt="South Africa"><span
+            class="logo-txt">South Africa</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/cm.png" class="logo-flag" alt="Cameroon"><span
+            class="logo-txt">Cameroon</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ug.png" class="logo-flag" alt="Uganda"><span
+            class="logo-txt">Uganda</span></div>
       </div>
       <!-- Duplicate Set for Seamless Loop -->
       <div class="logos-content">
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ng.png" class="logo-flag" alt="Nigeria"><span class="logo-txt">Nigeria</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ke.png" class="logo-flag" alt="Kenya"><span class="logo-txt">Kenya</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/gh.png" class="logo-flag" alt="Ghana"><span class="logo-txt">Ghana</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/rw.png" class="logo-flag" alt="Rwanda"><span class="logo-txt">Rwanda</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/za.png" class="logo-flag" alt="South Africa"><span class="logo-txt">South Africa</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/cm.png" class="logo-flag" alt="Cameroon"><span class="logo-txt">Cameroon</span></div>
-        <div class="logo-item"><img src="https://flagcdn.com/w80/ug.png" class="logo-flag" alt="Uganda"><span class="logo-txt">Uganda</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ng.png" class="logo-flag" alt="Nigeria"><span
+            class="logo-txt">Nigeria</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ke.png" class="logo-flag" alt="Kenya"><span
+            class="logo-txt">Kenya</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/gh.png" class="logo-flag" alt="Ghana"><span
+            class="logo-txt">Ghana</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/rw.png" class="logo-flag" alt="Rwanda"><span
+            class="logo-txt">Rwanda</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/za.png" class="logo-flag" alt="South Africa"><span
+            class="logo-txt">South Africa</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/cm.png" class="logo-flag" alt="Cameroon"><span
+            class="logo-txt">Cameroon</span></div>
+        <div class="logo-item"><img src="https://flagcdn.com/w80/ug.png" class="logo-flag" alt="Uganda"><span
+            class="logo-txt">Uganda</span></div>
       </div>
     </div>
   </div>
@@ -2632,7 +2736,8 @@
   <section class="sec features-bg">
     <div style="text-align:center;">
       <!-- <div class="eyebrow-green r">All Modules</div> -->
-      <h2 class="h2 r d1" style="max-width:24ch;margin:0 auto 10px;">All your finance modules in <em>one app</em></h2>
+      <h2 class="h2 r d1" style="max-width:24ch;margin:0 auto 10px;">All your finance modules <br> in <em>one app</em>
+      </h2>
       <p class="body-txt r d2" style="margin:0 auto;">We have a range of modules to match your needs, so you can start
         small and scale up.</p>
     </div>
@@ -2643,48 +2748,61 @@
     </div>
     <div class="feat-grid">
       <div class="feat r">
-        <div class="feat-icon"><i class="hgi-stroke hgi-sent"></i></div>
-        <div class="feat-t">Store &amp; Send Securely</div>
-        <div class="feat-d">Safely store and transfer digital dollars using Ewave. Instant and borderless payments with
-          full control over your funds.</div>
-        <div class="tags"><span class="tag">Instant</span><span class="tag">Bank-grade</span></div>
+        <div class="feat-content">
+          <div class="feat-t">Store &amp; Send Securely</div>
+          <div class="feat-d">Safely store and transfer digital dollars using Ewave. Instant and borderless payments
+            with
+            full control over your funds.</div>
+          <!-- <div class="tags"><span class="tag">Instant</span><span class="tag">Bank-grade</span></div> -->
+        </div>
+        <img src="../Assets/Store and Send Securely 1.png" alt="Store & Send Securely" class="feat-illus">
       </div>
       <div class="feat r d1">
-        <div class="feat-icon"><i class="hgi-stroke hgi-bank"></i></div>
-        <div class="feat-t">Withdraw Locally</div>
-        <div class="feat-d">Convert stablecoins to local currency and withdraw to your bank or mobile money. Fast and
-          transparent.</div>
-        <div class="tags"><span class="tag">Same-day</span><span class="tag">All banks</span></div>
+        <div class="feat-content">
+          <div class="feat-t">Withdraw Locally</div>
+          <div class="feat-d">Convert stablecoins to local currency and withdraw to your bank or mobile money. Fast and
+            transparent.</div>
+          <!-- <div class="tags"><span class="tag">Same-day</span><span class="tag">All banks</span></div> -->
+        </div>
+        <img src="../Assets/Withdraw Locally 1.png" alt="Withdraw Locally" class="feat-illus">
       </div>
       <div class="feat r d2">
-        <div class="feat-icon"><i class="hgi-stroke hgi-invoice-02"></i></div>
-        <div class="feat-t">Pay Bills in Stablecoins</div>
-        <div class="feat-d">Pay for airtime, internet, electricity, and cable TV directly in stablecoins. Fast, easy,
-          and affordable.</div>
-        <div class="tags"><span class="tag">Airtime</span><span class="tag">Utilities</span><span
-            class="tag">Cable</span></div>
+        <div class="feat-content">
+          <div class="feat-t">Pay Bills in Stablecoins</div>
+          <div class="feat-d">Pay for airtime, internet, electricity, and cable TV directly in stablecoins. Fast, easy,
+            and affordable.</div>
+          <!-- <div class="tags"><span class="tag">Airtime</span><span class="tag">Utilities</span><span
+              class="tag">Cable</span></div> -->
+        </div>
+        <img src="../Assets/Pay Bills in Stablecoins 1.png" alt="Pay Bills in Stablecoins" class="feat-illus">
       </div>
       <div class="feat r d2">
-        <div class="feat-icon"><i class="hgi-stroke hgi-chart-increase"></i></div>
-        <div class="feat-t">Save &amp; Earn Yield</div>
-        <div class="feat-d">Save and earn yield in stablecoins with Ewave. Protect your money from inflation while
-          growing your savings.</div>
-        <div class="tags"><span class="tag">Yield-bearing</span><span class="tag">USD-pegged</span></div>
+        <div class="feat-content">
+          <div class="feat-t">Save &amp; Earn Yield</div>
+          <div class="feat-d">Save and earn yield in stablecoins with Ewave. Protect your money from inflation while
+            growing your savings.</div>
+          <!-- <div class="tags"><span class="tag">Yield-bearing</span><span class="tag">USD-pegged</span></div> -->
+        </div>
+        <img src="../Assets/Save &amp; Earn Yield 1.png" alt="Save & Earn Yield" class="feat-illus">
       </div>
       <div class="feat r">
-        <div class="feat-icon"><i class="hgi-stroke hgi-add-circle"></i></div>
-        <div class="feat-t">Buy Stablecoins</div>
-        <div class="feat-d">Top up your Ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly at
-          the best rates.</div>
-        <div class="tags"><span class="tag">Bank transfer</span><span class="tag">Mobile money</span></div>
+        <div class="feat-content">
+          <div class="feat-t">Buy Stablecoins</div>
+          <div class="feat-d">Top up your Ewave wallet with your local bank or mobile money. Buy USDT or USDC instantly
+            at
+            the best rates.</div>
+          <!-- <div class="tags"><span class="tag">Bank transfer</span><span class="tag">Mobile money</span></div> -->
+        </div>
+        <img src="../Assets/Buy Stablecoins 1.png" alt="Buy Stablecoins" class="feat-illus">
       </div>
       <div class="feat r d1">
-        <div class="feat-icon"><i class="hgi-stroke hgi-chatting-01"></i></div>
-
-        <div class="feat-t">WhatsApp AI Agent</div>
-        <div class="feat-d">Send money, check rates, and manage your wallet through Ewave's WhatsApp AI agent. No app
-          needed.</div>
-        <div class="tags"><span class="tag">No app needed</span><span class="tag">AI-powered</span></div>
+        <div class="feat-content">
+          <div class="feat-t">WhatsApp AI Agent</div>
+          <div class="feat-d">Send money, check rates, and manage your wallet through Ewave's WhatsApp AI agent. No app
+            needed.</div>
+          <!-- <div class="tags"><span class="tag">No app needed</span><span class="tag">AI-powered</span></div> -->
+        </div>
+        <img src="../Assets/WhatsApp AI Agent 1.png" alt="WhatsApp AI Agent" class="feat-illus">
       </div>
     </div>
   </section>
@@ -2695,7 +2813,7 @@
   <section class="sec">
     <div class="who-wrap">
       <div class="wrap-fit">
-        <div class="eyebrow-green r">Who it's for</div>
+        <!-- <div class="eyebrow-green r">Who it's for</div> -->
         <h2 class="h2 r d1">Built for everyone moving <em>value</em> across Africa</h2>
       </div>
       <!-- <div>
@@ -2705,25 +2823,76 @@
       </div> -->
     </div>
     <div class="who-grid r">
+      <!-- Card 1: Freelancers -->
       <div class="who-item">
-        <div class="who-n">01</div>
-        <div class="who-t">Web3 Users</div>
-        <div class="who-d">Bridge stablecoins to local currency easily. On-ramp and off-ramp without friction.</div>
+        <div class="who-img-wrap">
+          <img src="../Assets/Who it's for/Freelancers.png" alt="Freelancers" class="who-img">
+          <div class="who-overlay"></div>
+          <div class="who-badge">
+            <i class="hgi-stroke hgi-code-01"></i>
+          </div>
+        </div>
+        <div class="who-content">
+          <div class="who-meta">
+            <div class="who-n">01</div>
+            <div class="who-t">Freelancers</div>
+          </div>
+          <div class="who-d">Get paid globally in stablecoins and withdraw locally in seconds.</div>
+        </div>
       </div>
+
+      <!-- Card 2: Creators & Influencers -->
       <div class="who-item">
-        <div class="who-n">02</div>
-        <div class="who-t">Freelancers &amp; Remote Workers</div>
-        <div class="who-d">Get paid globally in stablecoins and withdraw locally in seconds.</div>
+        <div class="who-img-wrap">
+          <img src="../Assets/Who it's for/Creators and Influencers.png" alt="Creators & Influencers" class="who-img">
+          <div class="who-overlay"></div>
+          <div class="who-badge">
+            <i class="hgi-stroke hgi-video-camera-01"></i>
+          </div>
+        </div>
+        <div class="who-content">
+          <div class="who-meta">
+            <div class="who-n">02</div>
+            <div class="who-t">Creators &amp; Influencers</div>
+          </div>
+          <div class="who-d">Earn in dollars, receive in stablecoins, and cash out locally.</div>
+        </div>
       </div>
+
+      <!-- Card 3: Remote Workers -->
       <div class="who-item">
-        <div class="who-n">03</div>
-        <div class="who-t">Creators &amp; Influencers</div>
-        <div class="who-d">Get paid from anywhere, protect your income from volatility, and cash out instantly.</div>
+        <div class="who-img-wrap">
+          <img src="../Assets/Who it's for/Remote workers.png" alt="Remote Workers" class="who-img">
+          <div class="who-overlay"></div>
+          <div class="who-badge">
+            <i class="hgi-stroke hgi-briefcase-01"></i>
+          </div>
+        </div>
+        <div class="who-content">
+          <div class="who-meta">
+            <div class="who-n">03</div>
+            <div class="who-t">Remote Workers</div>
+          </div>
+          <div class="who-d">Receive your salary in stablecoins without bank delays.</div>
+        </div>
       </div>
+
+      <!-- Card 4: Everyday Users -->
       <div class="who-item">
-        <div class="who-n">04</div>
-        <div class="who-t">Everyday Users</div>
-        <div class="who-d">Send money to family, pay friends, and save securely in dollar-backed assets.</div>
+        <div class="who-img-wrap">
+          <img src="../Assets/Who it's for/Everyday users.png" alt="Everyday Users" class="who-img">
+          <div class="who-overlay"></div>
+          <div class="who-badge">
+            <i class="hgi-stroke hgi-user"></i>
+          </div>
+        </div>
+        <div class="who-content">
+          <div class="who-meta">
+            <div class="who-n">04</div>
+            <div class="who-t">Everyday Users</div>
+          </div>
+          <div class="who-d">Send money to family and friends across Africa securely.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2749,7 +2918,9 @@
         <div class="testi-q">"Ewave completely transformed how I receive payments from international clients. No more
           waiting days for bank transfers — it just works."</div>
         <div class="testi-who">
-          <img class="testi-av" src="pics/open-sociable-handsome-happy-young-afro-american-hipster-wearing-red-trendy-hat-smiling-showing-his-white-teeth.jpg" alt="Chioma Okafor">
+          <img class="testi-av"
+            src="pics/open-sociable-handsome-happy-young-afro-american-hipster-wearing-red-trendy-hat-smiling-showing-his-white-teeth.jpg"
+            alt="Chioma Okafor">
           <div>
             <div class="testi-nm">Chioma Okafor</div>
             <div class="testi-rl">Freelance Designer · Lagos, Nigeria</div>
@@ -2866,16 +3037,20 @@
       <a href="#">Privacy Policy</a>
     </div>
     <div class="foot-socials">
-      <a href="https://wa.me/2347052812874" class="foot-social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/2347052812874" class="foot-social-link" aria-label="WhatsApp" target="_blank"
+        rel="noopener noreferrer">
         <i class="hgi-stroke hgi-whatsapp"></i>
       </a>
-      <a href="https://x.com/Ewavefin" class="foot-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+      <a href="https://x.com/Ewavefin" class="foot-social-link" aria-label="X (Twitter)" target="_blank"
+        rel="noopener noreferrer">
         <i class="hgi-stroke hgi-new-twitter"></i>
       </a>
-      <a href="https://www.linkedin.com/company/ewavefinance/" class="foot-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/company/ewavefinance/" class="foot-social-link" aria-label="LinkedIn"
+        target="_blank" rel="noopener noreferrer">
         <i class="hgi-stroke hgi-linkedin-01"></i>
       </a>
-      <a href="https://www.instagram.com/ewave.finance" class="foot-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/ewave.finance" class="foot-social-link" aria-label="Instagram" target="_blank"
+        rel="noopener noreferrer">
         <i class="hgi-stroke hgi-instagram"></i>
       </a>
     </div>
@@ -2914,7 +3089,7 @@
       });
     }
 
-    const typingWords = ['freely', 'fast', 'secure'];
+    const typingWords = ['freely', 'fast', 'securely'];
     const typingColors = ['#6049CC', '#3056C5', '#FD8419'];
     const typingElement = document.getElementById('heroTyping');
     let typingIndex = 0;
