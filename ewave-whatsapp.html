@@ -230,52 +230,54 @@
 
     .hero-h1 {
       font-family: var(--sans);
-      font-size: clamp(40px, 5vw, 60px);
-      font-weight: var(--fw-extrabold);
+      font-size: clamp(44px, 6.5vw, 68px);
+      font-weight: 900;
       line-height: 1.05;
-      letter-spacing: -0.04em;
-      color: var(--ink);
-      margin-bottom: 20px
+      letter-spacing: -0.05em;
+      color: #080808;
+      margin-bottom: 24px
     }
 
     .hero-h1 span {
-      color: var(--forest)
+      color: var(--forest);
+      display: inline;
     }
 
     .hero-p {
-      font-size: 16.5px;
+      font-size: 18px;
       font-weight: var(--fw-regular);
-      color: var(--ink-soft);
-      line-height: 1.72;
+      color: #4b5563;
+      line-height: 1.75;
       letter-spacing: -0.01em;
-      max-width: 46ch;
-      margin-bottom: 32px
+      max-width: 48ch;
+      margin-bottom: 40px
     }
 
     .notify-form {
       display: flex;
-      gap: 10px;
-      margin-bottom: 32px;
-      max-width: 440px
+      gap: 12px;
+      margin-bottom: 40px;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 8px;
+      border-radius: 9999px;
+      border: 1px solid rgba(96, 73, 204, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     }
 
     .notify-input {
       flex: 1;
-      padding: 13px 20px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--rule);
-      background: white;
+      padding: 14px 24px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
       font-family: var(--sans);
-      font-size: 14px;
-      font-weight: var(--fw-medium);
-      color: var(--ink);
+      font-size: 15px;
+      font-weight: 500;
+      color: #111;
       outline: none;
-      transition: border-color .2s;
       letter-spacing: -0.01em
-    }
-
-    .notify-input:focus {
-      border-color: var(--forest)
     }
 
     .notify-input::placeholder {
@@ -283,22 +285,25 @@
     }
 
     .notify-btn {
-      background: var(--forest);
+      background: #080808;
       color: white;
-      padding: 13px 24px;
-      border-radius: var(--radius-pill);
+      padding: 14px 28px;
+      border-radius: 9999px;
       font-family: var(--sans);
       font-size: 14px;
-      font-weight: var(--fw-bold);
+      font-weight: 700;
       border: none;
       cursor: pointer;
       white-space: nowrap;
-      transition: opacity .2s;
-      letter-spacing: -0.01em
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: -0.01em;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
     .notify-btn:hover {
-      opacity: .87
+      background: #6049CC;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(96, 73, 204, 0.3);
     }
 
     .follow-row {
@@ -354,15 +359,54 @@
 
     .hero-img-bg {
       width: 100%;
-      height: 420px;
-      border-radius: 24px;
-      overflow: hidden;
-      background: linear-gradient(160deg, #e8e0f5 0%, #f5f2fc 60%, #ede8fb 100%);
+      height: 480px;
+      border-radius: 40px;
+      overflow: visible;
+      background: radial-gradient(circle at top right, rgba(155, 135, 232, 0.1), transparent 70%),
+                  radial-gradient(circle at bottom left, rgba(96, 73, 204, 0.05), transparent 70%);
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center
     }
+
+    @media (max-width: 600px) {
+      .hero-img-bg {
+        height: 380px;
+      }
+    }
+
+    .hero-mockup-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .wa-token {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      z-index: 3;
+      filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
+      animation: pulse-slow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    .wa-token-1 { top: -20px; left: -40px; animation-delay: 0s; }
+    .wa-token-2 { bottom: 40px; right: -60px; animation-delay: 1s; }
+    .wa-token-3 { top: 40%; left: -80px; animation-delay: 2s; width: 48px; height: 48px; opacity: 0.6; }
 
     /* Person illustration placeholder */
     .person-silhouette {
@@ -1352,71 +1396,22 @@
       <div class="hero-right r d2">
         <div class="hero-img-wrap">
           <div class="hero-img-bg">
-            <!-- Abstract person illustration -->
-            <svg width="280" height="380" viewBox="0 0 280 380" fill="none" style="position:absolute;opacity:0.15">
-              <ellipse cx="140" cy="100" rx="50" ry="55" fill="#6049CC" />
-              <rect x="60" y="160" width="160" height="200" rx="40" fill="#6049CC" />
-            </svg>
-            <!-- Phone illustration -->
-            <div style="position:relative;z-index:2;">
+            <!-- Decorative Glows -->
+            <div style="position:absolute; top:-10%; right:-10%; width:300px; height:300px; background:rgba(155,135,232,0.15); filter:blur(80px); border-radius:50%;"></div>
+            <div style="position:absolute; bottom:-10%; left:-10%; width:250px; height:250px; background:rgba(96,73,204,0.1); filter:blur(60px); border-radius:50%;"></div>
+
+            <div class="hero-mockup-container">
+              <!-- Main Phone (Onboarding) -->
               <div
-                style="width:140px;height:240px;background:white;border-radius:24px;box-shadow:0 20px 60px rgba(96,73,204,0.2);padding:14px;position:relative;border:6px solid #1a1a1a;">
-                <!-- Phone screen -->
-                <div
-                  style="background:#ECE5DD;border-radius:14px;height:100%;overflow:hidden;display:flex;flex-direction:column;">
-                  <!-- Chat header -->
-                  <div style="background:var(--wa-dark);padding:8px 10px;display:flex;align-items:center;gap:6px;">
-                    <div
-                      style="width:24px;height:24px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                        <path
-                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                      </svg>
-                    </div>
-                    <span style="font-size:9px;font-weight:700;color:white;letter-spacing:.02em;">Ewave Bot</span>
-                    <span style="font-size:8px;color:rgba(255,255,255,0.7);margin-left:auto;">online</span>
-                  </div>
-                  <!-- Chat bubbles -->
-                  <div style="flex:1;padding:8px 6px;display:flex;flex-direction:column;gap:6px;overflow:hidden;">
-                    <div
-                      style="background:white;border-radius:10px 10px 10px 2px;padding:6px 8px;max-width:80%;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
-                      <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">Hi! Send $20 to Sarah 👋</p>
-                      <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:41</p>
-                    </div>
-                    <div
-                      style="background:#DCF8C6;border-radius:10px 10px 2px 10px;padding:6px 8px;max-width:80%;align-self:flex-end;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
-                      <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">✅ $20 USDC sent to Sarah!</p>
-                      <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:41 ✓✓</p>
-                    </div>
-                    <div
-                      style="background:white;border-radius:10px 10px 10px 2px;padding:6px 8px;max-width:80%;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
-                      <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">Check my balance 💰</p>
-                      <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:42</p>
-                    </div>
-                    <div
-                      style="background:#DCF8C6;border-radius:10px 10px 2px 10px;padding:6px 8px;max-width:85%;align-self:flex-end;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
-                      <p style="font-size:7.5px;color:#1a1a1a;line-height:1.4;">💵 Balance: $480.00 USDC</p>
-                      <p style="font-size:6px;color:#8A8A8A;text-align:right;margin-top:2px;">09:42 ✓✓</p>
-                    </div>
-                  </div>
-                </div>
+                style="width:240px;height:480px;background:white;border-radius:36px;box-shadow:0 30px 80px rgba(16,12,40,0.18);overflow:hidden;position:relative;border:8px solid #080808;z-index:2;transform:translateX(30px) rotate(2deg);">
+                <img src="pics/IMG-20260403-WA0027.jpg" alt="WhatsApp Bot Welcome" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <!-- Secondary Phone (Menu/Commands) -->
+              <div
+                style="width:200px;height:400px;background:white;border-radius:32px;box-shadow:0 20px 50px rgba(16,12,40,0.12);overflow:hidden;position:absolute;border:6px solid #080808;z-index:1;transform:translateX(-110px) translateY(50px) rotate(-5deg);opacity:0.9;">
+                <img src="pics/IMG-20260403-WA0026.jpg" alt="WhatsApp Bot Menu" style="width:100%;height:100%;object-fit:cover;">
               </div>
             </div>
-          </div>
-
-          <!-- Active Now floating card -->
-          <div class="active-card">
-            <div class="active-avatar">
-              <svg viewBox="0 0 24 24" fill="white">
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-              </svg>
-            </div>
-            <div class="active-text">
-              <div class="active-label">Active Now</div>
-              <div class="active-sub">WhatsApp Bot</div>
-            </div>
-            <div class="active-dot"></div>
           </div>
         </div>
       </div>
