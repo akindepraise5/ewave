@@ -916,6 +916,115 @@
       position: relative
     }
 
+    /* CTA */
+    .cta-bg {
+      background: #0d0d0d;
+      padding: 120px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(96, 73, 204, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-h {
+      font-family: var(--sans);
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 850;
+      margin-bottom: 24px;
+      max-width: 18ch;
+      margin-inline: auto;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      color: white;
+    }
+
+    .cta-h em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      color: #9282f9;
+      opacity: 0.9;
+    }
+
+    .cta-p {
+      font-size: 18px;
+      color: var(--ink-muted);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .cta-in {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 16px 24px;
+      border-radius: 40px;
+      color: white;
+      font-size: 15px;
+      width: 320px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .cta-in:focus {
+      border-color: #6049CC;
+    }
+
+    .cta-in::placeholder {
+      color: #666;
+    }
+
+    .btn-newsletter {
+      background: #6049CC;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      background: #735edb;
+      transform: translateY(-2px);
+    }
+
+    .cta-note {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: white;
@@ -925,7 +1034,36 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem
+      gap: 1rem;
+    }
+
+    .foot-logo {
+      display: block;
+    }
+
+    .foot-logo-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .foot-links a {
+      font-size: 13px;
+      font-weight: var(--fw-medium);
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+
+    .foot-links a:hover {
+      color: var(--ink);
     }
 
     .foot-logo-img {
@@ -1173,7 +1311,7 @@
     <button class="nav-new-toggle" id="navToggle">☰</button>
     <div class="nav-new-links" id="navLinks">
       <a href="ewave-whatsapp.html" class="active">WhatsApp Bot</a>
-      <a href="ewave-blog.html">Blogs</a>
+      <a href="ewave-blog.html">Blog</a>
       <a href="ewave-about.html">About Us</a>
     </div>
     <a href="#" class="nav-new-cta">Get Started</a>
@@ -1420,16 +1558,19 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <h2 class="newsletter-h r">Stay Ahead in the <em>Future</em> of Digital Finance</h2>
-    <p class="newsletter-sub r d1">Get insights, trends, and updates from Ewave to help you grow, earn, and stay
-      informed in the evolving digital economy.</p>
-    <div class="newsletter-form r d2">
-      <input class="newsletter-input" type="email" placeholder="Enter your email">
-      <button class="newsletter-btn">Subscribe to Our Newsletter </button>
+  <!-- CTA -->
+  <section class="cta-bg">
+    <div class="cta-glow"></div>
+    <div class="cta-inner">
+      <h2 class="cta-h r d1">Stay Ahead in the <em>Future</em> of Digital Finance</h2>
+      <p class="cta-p r d2">Get insights, trends, and updates from Ewave to help you grow, earn, and stay informed in
+        the evolving digital economy.</p>
+      <div class="cta-form r d3">
+        <input class="cta-in" type="email" placeholder="Enter your email">
+        <a href="#" class="btn-newsletter">Subscribe to Our Newsletter</a>
+      </div>
+      <p class="cta-note r d4">Join 10,000+ people already using Ewave across Africa</p>
     </div>
-    <p class="newsletter-note r d3">Join 10,000+ people already using Ewave across Africa</p>
   </section>
 
   <!-- FOOTER -->
